@@ -97,22 +97,31 @@ public class Populator implements CommandLineRunner {
             player.setType(Type.CONTRACTED);
         }
         leAnne.addPart(Part.Flute);
+        leAnne.setType(Type.CONTRACTED);
         leAnne.setRank(1);
+
+        seanG.setType(Type.CONTRACTED);
         seanG.addPart(Part.Flute);
         seanG.setRank(2);
 
+        danna.setType(Type.CONTRACTED);
         danna.addPart(Part.Oboe);
         danna.setRank(1);
+
+        heatherS.setType(Type.CONTRACTED);
         heatherS.addPart(Part.Oboe);
         heatherS.setRank(2);
 
+        sarahH.setType(Type.CONTRACTED);
         sarahH.addPart(Part.Oboe);
         sarahH.setRank(3);
         sarahH.addPart(Part.EnglishHorn);
 
+        ami.setType(Type.CONTRACTED);
         ami.addPart(Part.Clarinet);
         ami.setRank(1);
 
+        benC.setType(Type.CONTRACTED);
         benC.addPart(Part.Clarinet);
         benC.setRank(2);
 
@@ -120,6 +129,10 @@ public class Populator implements CommandLineRunner {
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
+        System.out.println(playerRepo.findAllByType(Type.CONTRACTED).size());
+        for (Player player : playerRepo.findAllByType(Type.CONTRACTED)) {
+            System.out.println(player.getLastName() + "    " + player.getPrimaryPart());
+        }
 
     }
 }

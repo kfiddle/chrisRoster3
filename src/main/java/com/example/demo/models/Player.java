@@ -27,6 +27,8 @@ public class Player implements Comparable<Player> {
     private String firstNameArea;
     private String lastName;
 
+    private Part primaryPart;
+
     public Player() {
         parts = new ArrayList<>();
     }
@@ -47,10 +49,14 @@ public class Player implements Comparable<Player> {
 
     public void setParts(List<Part> parts) {
         this.parts = parts;
+        this.primaryPart = parts.get(0);
     }
 
     public void addPart(Part part) {
         parts.add(part);
+        if (parts.size() == 1) {
+            primaryPart = parts.get(0);
+        }
     }
 
     public void setFirstNameArea(String firstNameArea) {
@@ -69,8 +75,8 @@ public class Player implements Comparable<Player> {
         return type;
     }
 
-    public Part getPrimary() {
-        return parts.get(0);
+    public Part getPrimaryPart() {
+        return primaryPart;
     }
 
     public int getRank() {

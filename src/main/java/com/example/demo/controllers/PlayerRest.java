@@ -27,26 +27,38 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
+    @RequestMapping("/get-all-parts")
+    public Collection<String> getAllParts() {
+        Collection<String> parts = new ArrayList<>();
+        for (Part part : Part.values()) {
+            parts.add(part.toString());
+        }
+        return parts;
+    }
+
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        List<Player> playersToReturn = new ArrayList<>();
-        Collection<Player> contracted = playerRepo.findAllByType(Type.CONTRACTED);
 
-        for (Part part : Part.values()) {
-            List<Player> sectionList = new ArrayList<>();
-            for (Player player : contracted) {
-                if (player.getParts().get(0).equals(part)) {
-                    sectionList.add(player);
-                }
-            }
-            Collections.sort(sectionList);
-            playersToReturn.addAll(sectionList);
-        }
+        return playerRepo.findAllByType(Type.CONTRACTED);
 
-        for (Player player : playersToReturn) {
-            System.out.println(player.getLastName() + "   " + player.getRank());
-        }
-        return playersToReturn;
+//        List<Player> playersToReturn = new ArrayList<>();
+//        Collection<Player> contracted = playerRepo.findAllByType(Type.CONTRACTED);
+//
+//        for (Part part : Part.values()) {
+//            List<Player> sectionList = new ArrayList<>();
+//            for (Player player : contracted) {
+//                if (player.getParts().get(0).equals(part)) {
+//                    sectionList.add(player);
+//                }
+//            }
+//            Collections.sort(sectionList);
+//            playersToReturn.addAll(sectionList);
+//        }
+//
+//        for (Player player : playersToReturn) {
+//            System.out.println(player.getLastName() + "   " + player.getRank());
+//        }
+//        return playersToReturn;
     }
 
     @RequestMapping("get-all-subs")
