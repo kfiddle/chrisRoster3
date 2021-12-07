@@ -31,4 +31,8 @@ public class PieceOnProgram {
     public Piece getPiece() {
         return piece;
     }
+
+    public Collection<PInChair> getChairsToFill() {
+        return chairsToFill;
+    }
 }

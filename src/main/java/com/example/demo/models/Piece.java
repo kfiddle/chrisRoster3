@@ -5,7 +5,7 @@ import com.example.demo.enums.Part;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 @Entity
 public class Piece {

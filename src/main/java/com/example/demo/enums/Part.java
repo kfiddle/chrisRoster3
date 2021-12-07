@@ -46,7 +46,6 @@ public enum Part {
         return scoreOrder;
     }
 
-
     public int compare(Part otherPart) {
         return Integer.compare(scoreOrder, otherPart.getScoreOrder());
     }

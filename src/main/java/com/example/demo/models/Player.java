@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Player {
+public class Player implements Comparable<Player> {
 
     @Id
     @GeneratedValue
@@ -87,5 +87,10 @@ public class Player {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return 0;
     }
 }
