@@ -4,13 +4,15 @@ package com.example.demo.junctions;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Collection;
 
-@Embeddable
+@Entity
 public class PieceOnProgram {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @ManyToOne
     private Piece piece;
@@ -26,6 +28,10 @@ public class PieceOnProgram {
 
     public void setPiece(Piece piece) {
         this.piece = piece;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Piece getPiece() {

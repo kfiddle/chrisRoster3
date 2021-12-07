@@ -89,8 +89,29 @@ public class Player implements Comparable<Player> {
         return lastName;
     }
 
+    public void setAllProps(Player otherPlayer) {
+        if (otherPlayer.getFirstNameArea() != null) {
+            firstNameArea = otherPlayer.getFirstNameArea();
+        }
+        if (otherPlayer.getLastName() != null) {
+            lastName = otherPlayer.getLastName();
+        }
+        if (otherPlayer.getType() != null) {
+            type = otherPlayer.getType();
+        }
+        if (otherPlayer.getRank() > 0) {
+            rank = otherPlayer.getRank();
+        }
+    }
+
+
     @Override
-    public int compareTo(Player o) {
-        return 0;
+    public int compareTo(Player otherPlayer) {
+        if (rank > otherPlayer.getRank()) {
+            return 1;
+        } else {
+            return -1;
+        }
+
     }
 }

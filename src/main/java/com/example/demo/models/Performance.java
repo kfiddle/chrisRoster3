@@ -27,9 +27,8 @@ public class Performance implements Comparable<Performance> {
 
     private String notes;
 
-    @ElementCollection
+    @OneToMany
     private List<PieceOnProgram> program;
-
 
     public Performance() {
         program = new ArrayList<>();
