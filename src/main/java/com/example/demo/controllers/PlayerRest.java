@@ -59,6 +59,7 @@ public class PlayerRest {
 
                 playerRepo.save(playerToAdd);
                 System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName());
+                System.out.println(playerToAdd.getType() + "   " + playerToAdd.getRank());
             }
         } catch (Exception error) {
             error.printStackTrace();

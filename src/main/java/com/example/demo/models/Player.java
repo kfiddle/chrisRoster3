@@ -26,6 +26,14 @@ public class Player implements Comparable<Player> {
 
     private String firstNameArea;
     private String lastName;
+    private String email;
+    private String homePhone;
+    private String cellPhone;
+    private String addressLine1;
+    private String addressLine2;
+    private String city;
+    private String state;
+    private String zip;
 
     private Part primaryPart;
 
@@ -37,6 +45,21 @@ public class Player implements Comparable<Player> {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         parts = new ArrayList<>();
+    }
+
+    public Player(PlayerBuilder playerBuilder) {
+        firstNameArea = playerBuilder.firstNameArea;
+        lastName = playerBuilder.lastName;
+        type = playerBuilder.type;
+        rank = playerBuilder.rank;
+        email= playerBuilder.email;
+        homePhone= playerBuilder.homePhone;
+        cellPhone= playerBuilder.cellPhone;
+        addressLine1= playerBuilder.addressLine1;
+        addressLine2= playerBuilder.addressLine2;
+        city= playerBuilder.city;
+        state= playerBuilder.state;
+        zip= playerBuilder.zip;
     }
 
     public void setType(Type type) {
@@ -57,14 +80,6 @@ public class Player implements Comparable<Player> {
         if (parts.size() == 1) {
             primaryPart = parts.get(0);
         }
-    }
-
-    public void setFirstNameArea(String firstNameArea) {
-        this.firstNameArea = firstNameArea;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -95,25 +110,37 @@ public class Player implements Comparable<Player> {
         return lastName;
     }
 
-    public static boolean isThere(String someString) {
-        return someString != null && !someString.isEmpty();
+    public String getEmail() {
+        return email;
     }
 
-    public void setAllProps(Player otherPlayer) {
-        if (isThere(otherPlayer.getFirstNameArea())) {
-            firstNameArea = otherPlayer.getFirstNameArea();
-        }
-        if (otherPlayer.getLastName() != null) {
-            lastName = otherPlayer.getLastName();
-        }
-        if (otherPlayer.getType() != null) {
-            type = otherPlayer.getType();
-        }
-        if (otherPlayer.getRank() > 0) {
-            rank = otherPlayer.getRank();
-        }
+    public String getHomePhone() {
+        return homePhone;
     }
 
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
 
     @Override
     public int compareTo(Player otherPlayer) {
