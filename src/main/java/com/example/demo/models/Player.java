@@ -95,8 +95,12 @@ public class Player implements Comparable<Player> {
         return lastName;
     }
 
+    public static boolean isThere(String someString) {
+        return someString != null && !someString.isEmpty();
+    }
+
     public void setAllProps(Player otherPlayer) {
-        if (otherPlayer.getFirstNameArea() != null) {
+        if (isThere(otherPlayer.getFirstNameArea())) {
             firstNameArea = otherPlayer.getFirstNameArea();
         }
         if (otherPlayer.getLastName() != null) {

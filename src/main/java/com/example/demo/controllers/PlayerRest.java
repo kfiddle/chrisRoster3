@@ -3,13 +3,12 @@ package com.example.demo.controllers;
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 import com.example.demo.models.Player;
+import com.example.demo.models.PlayerMaker;
 import com.example.demo.repositories.PlayerRepo;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -41,25 +40,31 @@ public class PlayerRest {
     public Collection<Player> getAllContractedPlayers() {
 
         return playerRepo.findAllByType(Type.CONTRACTED);
+    }
 
-//        List<Player> playersToReturn = new ArrayList<>();
-//        Collection<Player> contracted = playerRepo.findAllByType(Type.CONTRACTED);
-//
-//        for (Part part : Part.values()) {
-//            List<Player> sectionList = new ArrayList<>();
-//            for (Player player : contracted) {
-//                if (player.getParts().get(0).equals(part)) {
-//                    sectionList.add(player);
-//                }
-//            }
-//            Collections.sort(sectionList);
-//            playersToReturn.addAll(sectionList);
-//        }
-//
-//        for (Player player : playersToReturn) {
-//            System.out.println(player.getLastName() + "   " + player.getRank());
-//        }
-//        return playersToReturn;
+    @PostMapping("/add-player")
+    public Player addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+
+        try {
+            if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
+                return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+
+            } else {
+                Player playerToAdd = PlayerMaker.makeFrom(incomingPlayer);
+                if (playerToAdd.getParts() != null) {
+                    for (Part part : playerToAdd.getParts()) {
+                        System.out.println(part.toString());
+                    }
+                }
+
+                playerRepo.save(playerToAdd);
+                System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName());
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+        return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+
     }
 
     @RequestMapping("/get-all-sub-players")
