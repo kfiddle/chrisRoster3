@@ -5,6 +5,7 @@ import com.example.demo.enums.Type;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,9 +62,24 @@ public class PlayerRest {
 //        return playersToReturn;
     }
 
-    @RequestMapping("get-all-subs")
+    @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubs() {
         return playerRepo.findAllByType(Type.SUB);
+    }
+
+    @RequestMapping("/subs/{incomingPart}")
+    public Collection<Player> getSubsOfInstrument(@PathVariable String incomingPart) {
+        System.out.println(incomingPart);
+        Part partToFind = Part.ofPartName(incomingPart);
+        Collection<Player> playersToSend = new ArrayList<>();
+        for (Player player : playerRepo.findAllByType(Type.SUB)) {
+            for (Part part : player.getParts()) {
+                if (part.equals(partToFind)) {
+                    playersToSend.add(player);
+                }
+            }
+        }
+        return playersToSend;
     }
 
 }

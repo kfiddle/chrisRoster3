@@ -129,10 +129,26 @@ public class Populator implements CommandLineRunner {
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
-        System.out.println(playerRepo.findAllByType(Type.CONTRACTED).size());
-        for (Player player : playerRepo.findAllByType(Type.CONTRACTED)) {
-            System.out.println(player.getLastName() + "    " + player.getPrimaryPart());
-        }
+
+        Player samPetrey = new Player("Sam", "Petrey");
+        Player maijaAnstine = new Player("Maija", "Anstine");
+        Player chrisBlaha = new Player("Chris", "Blaha");
+        Player erikSundet = new Player("Erik", "Sundet");
+
+
+        samPetrey.setType(Type.SUB);
+        maijaAnstine.setType(Type.SUB);
+        chrisBlaha.setType(Type.SUB);
+        erikSundet.setType(Type.SUB);
+
+        samPetrey.addPart(Part.Violin1);
+        maijaAnstine.addPart(Part.Viola);
+        chrisBlaha.addPart(Part.Tuba);
+        erikSundet.addPart(Part.Trumpet);
+
+        playerRepo.saveAll(Arrays.asList(samPetrey, maijaAnstine, chrisBlaha, erikSundet));
+
+
 
     }
 }
