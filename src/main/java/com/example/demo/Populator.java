@@ -22,17 +22,14 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
-//        Player leAnne = new Player("Leanne", "Wistrom");
-
         Player leAnne = new Player(new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute));
+        Player seanG = new Player(new PlayerBuilder().firstNameArea("Sean").lastName("Gabriel").type(Type.CONTRACTED).rank(2).addAPart(Part.Flute));
+        Player danna = new Player(new PlayerBuilder().firstNameArea("Danna").lastName("Sundet").type(Type.CONTRACTED).rank(1).addAPart(Part.Oboe));
+        Player heatherS = new Player(new PlayerBuilder().firstNameArea("Heather").lastName("Story").type(Type.CONTRACTED).rank(2).addAPart(Part.Oboe));
+        Player sarahH = new Player(new PlayerBuilder().firstNameArea("Sarah").lastName("Hamilton").type(Type.CONTRACTED).rank(3).addAPart(Part.Oboe).addAPart(Part.EnglishHorn));
+        Player ami = new Player(new PlayerBuilder().firstNameArea("Ami").lastName("Vardi").type(Type.CONTRACTED).rank(1).addAPart(Part.Clarinet));
+        Player benC = new Player(new PlayerBuilder().firstNameArea("Benjamin").lastName("Chen").type(Type.CONTRACTED).rank(2));
 
-        Player seanG = new Player("Sean", "Gabriel");
-        Player danna = new Player("Danna", "Sundet");
-        Player heatherS = new Player("Heather", "Storey");
-        Player sarahH = new Player("Sarah", "Hamilton");
-        Player ami = new Player("Ami", "Vardi");
-        Player benC = new Player("Benjamin", "Chen");
         Player db = new Player("David", "Boutin-Bourque");
         Player kdo = new Player("KeriAnn", "DiBari-Oberle");
         Player lk = new Player("Laura", "Laura Koepke");
@@ -93,38 +90,9 @@ public class Populator implements CommandLineRunner {
         Player mikeChen = new Player("Mike", "Chen");
         Player dianaV = new Player("Diana", "Pepelea");
 
-        playerRepo.saveAll(Arrays.asList(seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
+        playerRepo.saveAll(Arrays.asList(db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
-
-//        leAnne.addPart(Part.Flute);
-//        leAnne.setType(Type.CONTRACTED);
-//        leAnne.setRank(1);
-
-        seanG.setType(Type.CONTRACTED);
-        seanG.addPart(Part.Flute);
-        seanG.setRank(2);
-
-        danna.setType(Type.CONTRACTED);
-        danna.addPart(Part.Oboe);
-        danna.setRank(1);
-
-        heatherS.setType(Type.CONTRACTED);
-        heatherS.addPart(Part.Oboe);
-        heatherS.setRank(2);
-
-        sarahH.setType(Type.CONTRACTED);
-        sarahH.addPart(Part.Oboe);
-        sarahH.setRank(3);
-        sarahH.addPart(Part.EnglishHorn);
-
-        ami.setType(Type.CONTRACTED);
-        ami.addPart(Part.Clarinet);
-        ami.setRank(1);
-
-        benC.setType(Type.CONTRACTED);
-        benC.addPart(Part.Clarinet);
-        benC.setRank(2);
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
@@ -148,7 +116,6 @@ public class Populator implements CommandLineRunner {
         erikSundet.addPart(Part.Trumpet);
 
         playerRepo.saveAll(Arrays.asList(samPetrey, maijaAnstine, chrisBlaha, erikSundet));
-
 
 
     }

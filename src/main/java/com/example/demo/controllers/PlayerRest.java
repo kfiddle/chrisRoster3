@@ -39,7 +39,12 @@ public class PlayerRest {
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
 
-        return playerRepo.findAllByType(Type.CONTRACTED);
+
+        List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByType(Type.CONTRACTED);
+        Collections.sort(playersToSendBack);
+
+        return playersToSendBack;
+//        return playerRepo.findAllByType(Type.CONTRACTED);
     }
 
     @PostMapping("/add-player")

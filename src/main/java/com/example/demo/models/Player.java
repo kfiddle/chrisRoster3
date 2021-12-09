@@ -52,15 +52,18 @@ public class Player implements Comparable<Player> {
         lastName = playerBuilder.lastName;
         type = playerBuilder.type;
         rank = playerBuilder.rank;
-        email= playerBuilder.email;
-        homePhone= playerBuilder.homePhone;
-        cellPhone= playerBuilder.cellPhone;
-        addressLine1= playerBuilder.addressLine1;
-        addressLine2= playerBuilder.addressLine2;
-        city= playerBuilder.city;
-        state= playerBuilder.state;
-        zip= playerBuilder.zip;
+        email = playerBuilder.email;
+        homePhone = playerBuilder.homePhone;
+        cellPhone = playerBuilder.cellPhone;
+        addressLine1 = playerBuilder.addressLine1;
+        addressLine2 = playerBuilder.addressLine2;
+        city = playerBuilder.city;
+        state = playerBuilder.state;
+        zip = playerBuilder.zip;
         parts = playerBuilder.parts;
+        if (playerBuilder.parts.size() > 0) {
+            primaryPart = playerBuilder.parts.get(0);
+        }
 
     }
 
@@ -146,7 +149,10 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player otherPlayer) {
-        if (rank > otherPlayer.getRank()) {
+
+        if (primaryPart.compare(otherPlayer.getPrimaryPart()) != 0) {
+            return primaryPart.compare(otherPlayer.getPrimaryPart());
+        } else if (rank > otherPlayer.getRank()) {
             return 1;
         } else {
             return -1;

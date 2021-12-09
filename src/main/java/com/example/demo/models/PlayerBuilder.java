@@ -29,11 +29,6 @@ public class PlayerBuilder {
     public String state;
     public String zip;
 
-    public PlayerBuilder() {
-        parts = new ArrayList<>();
-    }
-
-
     public PlayerBuilder firstNameArea(String firstNameArea) {
         if (firstNameArea != null) {
             this.firstNameArea = firstNameArea;
@@ -63,12 +58,13 @@ public class PlayerBuilder {
     }
 
     public PlayerBuilder addAPart(Part part) {
+        if (parts == null) {
+            parts = new ArrayList<>();
+        }
         if (part != null) {
             parts.add(part);
         }
-        if (parts.size() == 1) {
-            primaryPart = parts.get(0);
-        }
+
         return this;
     }
 
