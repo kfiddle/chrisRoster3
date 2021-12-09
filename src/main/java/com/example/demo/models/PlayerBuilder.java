@@ -4,6 +4,7 @@ import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 
 import javax.persistence.ElementCollection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerBuilder {
@@ -12,7 +13,9 @@ public class PlayerBuilder {
     public int rank;
 
     @ElementCollection
-    private List<Part> parts;
+    public List<Part> parts;
+
+    public Part primaryPart;
 
     public String firstNameArea;
     public String lastName;
@@ -25,6 +28,11 @@ public class PlayerBuilder {
     public String city;
     public String state;
     public String zip;
+
+    public PlayerBuilder() {
+        parts = new ArrayList<>();
+    }
+
 
     public PlayerBuilder firstNameArea(String firstNameArea) {
         if (firstNameArea != null) {
@@ -54,6 +62,17 @@ public class PlayerBuilder {
         return this;
     }
 
+    public PlayerBuilder addAPart(Part part) {
+        if (part != null) {
+            parts.add(part);
+        }
+        if (parts.size() == 1) {
+            primaryPart = parts.get(0);
+        }
+        return this;
+    }
+
+
     public PlayerBuilder email(String email) {
         if (email != null) {
             this.email = email;
@@ -64,54 +83,51 @@ public class PlayerBuilder {
     public PlayerBuilder homePhone(String homePhone) {
         if (homePhone != null) {
             this.homePhone = homePhone;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder cellPhone(String cellPhone) {
         if (cellPhone != null) {
             this.cellPhone = cellPhone;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder addressLine1(String addressLine1) {
         if (addressLine1 != null) {
             this.addressLine1 = addressLine1;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder addressLine2(String addressLine2) {
         if (addressLine2 != null) {
             this.addressLine2 = addressLine2;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder city(String city) {
         if (city != null) {
             this.city = city;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder state(String state) {
         if (state != null) {
             this.state = state;
-        } return this;
+        }
+        return this;
     }
 
     public PlayerBuilder zip(String zip) {
         if (zip != null) {
             this.zip = zip;
-        } return this;
+        }
+        return this;
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public Player build() {

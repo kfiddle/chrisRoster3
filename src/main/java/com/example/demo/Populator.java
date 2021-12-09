@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 import com.example.demo.models.Player;
+import com.example.demo.models.PlayerBuilder;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +23,10 @@ public class Populator implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        Player leAnne = new Player("Leanne", "Wistrom");
+//        Player leAnne = new Player("Leanne", "Wistrom");
+
+        Player leAnne = new Player(new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute));
+
         Player seanG = new Player("Sean", "Gabriel");
         Player danna = new Player("Danna", "Sundet");
         Player heatherS = new Player("Heather", "Storey");
@@ -89,16 +93,13 @@ public class Populator implements CommandLineRunner {
         Player mikeChen = new Player("Mike", "Chen");
         Player dianaV = new Player("Diana", "Pepelea");
 
-        playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
+        playerRepo.saveAll(Arrays.asList(seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
 
-        for (Player player : playerRepo.findAll()) {
-            player.setType(Type.CONTRACTED);
-        }
-        leAnne.addPart(Part.Flute);
-        leAnne.setType(Type.CONTRACTED);
-        leAnne.setRank(1);
+//        leAnne.addPart(Part.Flute);
+//        leAnne.setType(Type.CONTRACTED);
+//        leAnne.setRank(1);
 
         seanG.setType(Type.CONTRACTED);
         seanG.addPart(Part.Flute);

@@ -60,6 +60,8 @@ public class Player implements Comparable<Player> {
         city= playerBuilder.city;
         state= playerBuilder.state;
         zip= playerBuilder.zip;
+        parts = playerBuilder.parts;
+
     }
 
     public void setType(Type type) {
