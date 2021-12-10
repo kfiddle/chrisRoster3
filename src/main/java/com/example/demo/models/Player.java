@@ -64,7 +64,6 @@ public class Player implements Comparable<Player> {
         if (playerBuilder.parts.size() > 0) {
             primaryPart = playerBuilder.parts.get(0);
         }
-
     }
 
     public void setType(Type type) {

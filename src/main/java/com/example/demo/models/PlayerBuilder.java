@@ -15,7 +15,7 @@ public class PlayerBuilder {
     @ElementCollection
     public List<Part> parts;
 
-    public Part primaryPart;
+//    public Part primaryPart;
 
     public String firstNameArea;
     public String lastName;
@@ -28,6 +28,10 @@ public class PlayerBuilder {
     public String city;
     public String state;
     public String zip;
+
+    public PlayerBuilder() {
+        parts = new ArrayList<>();
+    }
 
     public PlayerBuilder firstNameArea(String firstNameArea) {
         if (firstNameArea != null) {
@@ -58,13 +62,7 @@ public class PlayerBuilder {
     }
 
     public PlayerBuilder addAPart(Part part) {
-        if (parts == null) {
-            parts = new ArrayList<>();
-        }
-        if (part != null) {
-            parts.add(part);
-        }
-
+        parts.add(part);
         return this;
     }
 
