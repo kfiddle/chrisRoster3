@@ -62,62 +62,37 @@ public class Populator implements CommandLineRunner {
         Player jiyeonY = new Player(new PlayerBuilder().firstNameArea("Jiyeon").lastName("Yeo").type(Type.CONTRACTED).rank(5).addAPart(Part.Violin2));
         Player cv = new Player(new PlayerBuilder().firstNameArea("Colleen").lastName("Vanderzyden").type(Type.CONTRACTED).rank(6).addAPart(Part.Violin2));
         Player kf = new Player(new PlayerBuilder().firstNameArea("Karen").lastName("Ferren").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
-        Player hl = new Player(new PlayerBuilder().firstNameArea("Howard").lastName("Lyon").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
+        Player hl = new Player(new PlayerBuilder().firstNameArea("Howard").lastName("Lyon").type(Type.CONTRACTED).rank(8).addAPart(Part.Violin2));
 
 //        Player ln = new Player(new PlayerBuilder().firstNameArea("Louis").lastName("Lyon").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
 //        Player ln = new Player("Louis", "Nicolia");
 
-       
-        Player ee = new Player("Emilie", "Engel");
+        Player ee = new Player(new PlayerBuilder().firstNameArea("Emilie").lastName("Engel").type(Type.CONTRACTED).rank(9).addAPart(Part.Violin2));
+        Player jiYoung = new Player(new PlayerBuilder().firstNameArea("Ji Young").lastName("Nam").type(Type.CONTRACTED).rank(1).addAPart(Part.Viola));
+        Player sy = new Player(new PlayerBuilder().firstNameArea("Si").lastName("Yu").type(Type.CONTRACTED).rank(2).addAPart(Part.Viola));
+        Player benS = new Player(new PlayerBuilder().firstNameArea("Benjamin").lastName("Schantz").type(Type.CONTRACTED).rank(3).addAPart(Part.Viola));
+        Player eriS = new Player(new PlayerBuilder().firstNameArea("Eri").lastName("Snowden-Rodriguez").type(Type.CONTRACTED).rank(1).addAPart(Part.Cello));
+        Player wt = new Player(new PlayerBuilder().firstNameArea("Will").lastName("Teegarden").type(Type.CONTRACTED).rank(2).addAPart(Part.Cello));
+        Player nadineS = new Player(new PlayerBuilder().firstNameArea("Nadine").lastName("Sherman").type(Type.CONTRACTED).rank(3).addAPart(Part.Cello));
+        Player jeffS = new Player(new PlayerBuilder().firstNameArea("Jeff").lastName("Singler").type(Type.CONTRACTED).rank(4).addAPart(Part.Cello));
+        Player bn = new Player(new PlayerBuilder().firstNameArea("Robert").lastName("Nicholson").type(Type.CONTRACTED).rank(5).addAPart(Part.Cello));
+        Player jv = new Player(new PlayerBuilder().firstNameArea("Jean").lastName("Verdecchia").type(Type.CONTRACTED).rank(6).addAPart(Part.Cello));
+        Player kieranH = new Player(new PlayerBuilder().firstNameArea("Kieran").lastName("Hanlon").type(Type.CONTRACTED).rank(1).addAPart(Part.Bass));
+        Player josephH = new Player(new PlayerBuilder().firstNameArea("Joseph").lastName("Hernandez").type(Type.CONTRACTED).rank(2).addAPart(Part.Bass));
+        Player tomC = new Player(new PlayerBuilder().firstNameArea("Thomas").lastName("Christopherson").type(Type.CONTRACTED).rank(3).addAPart(Part.Bass));
+        Player jamesM = new Player(new PlayerBuilder().firstNameArea("James").lastName("Mohney").type(Type.CONTRACTED).rank(4).addAPart(Part.Bass));
 
-        Player jiYoung = new Player("Ji Young", "Nam");
-        Player sy = new Player("Si", "Yu");
-        Player benS = new Player("Benjamin", "Schantz");
-
-        Player eriS = new Player("Eri", "Snowden-Rodriguez");
-        Player wt = new Player("Will", "Teegarden");
-        Player nadineS = new Player("Nadine", "Sherman");
-        Player jeffS = new Player("Jeff", "Singler");
-
-        Player bn = new Player("Robert ", "Nicholson");
-        Player jv = new Player("Jean ", "Verdecchia");
-
-        Player kieranH = new Player("Kieran", "Hanlon");
-        Player josephH = new Player("Joseph", "Hernandez");
-        Player tomC = new Player("Thomas", "Christopherson");
-        Player jamesM = new Player("James", "Mohney");
-
-        Player mariaP = new Player("Maria", "Park");
-        Player mikeChen = new Player("Mike", "Chen");
-        Player dianaV = new Player("Diana", "Pepelea");
-
-        playerRepo.saveAll(Arrays.asList(db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
-                da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
-                eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
+        Player mariaP = new Player(new PlayerBuilder().firstNameArea("Maria").lastName("Park").type(Type.SUB).rank(1).addAPart(Part.Violin1));
+        Player mikeChen = new Player(new PlayerBuilder().firstNameArea("Mike").lastName("Chen").type(Type.SUB).rank(1).addAPart(Part.Violin1));
+        Player dianaV = new Player(new PlayerBuilder().firstNameArea("Diana").lastName("Pepelea").type(Type.SUB).rank(1).addAPart(Part.Violin1));
+        Player samPetrey = new Player(new PlayerBuilder().firstNameArea("Sam").lastName("Petrey").type(Type.SUB).rank(1).addAPart(Part.Violin1));
+        Player maijaAnstine = new Player(new PlayerBuilder().firstNameArea("Maija").lastName("Anstine").type(Type.SUB).rank(1).addAPart(Part.Viola));
+        Player chrisBlaha = new Player(new PlayerBuilder().firstNameArea("Chris").lastName("Blaha").type(Type.SUB).rank(1).addAPart(Part.Tuba));
+        Player erikSundet = new Player(new PlayerBuilder().firstNameArea("Erik").lastName("Sundet").type(Type.SUB).rank(1).addAPart(Part.Trumpet));
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
-                eriS, ee, jiYoung, ln, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV));
-
-
-        Player samPetrey = new Player("Sam", "Petrey");
-        Player maijaAnstine = new Player("Maija", "Anstine");
-        Player chrisBlaha = new Player("Chris", "Blaha");
-        Player erikSundet = new Player("Erik", "Sundet");
-
-
-        samPetrey.setType(Type.SUB);
-        maijaAnstine.setType(Type.SUB);
-        chrisBlaha.setType(Type.SUB);
-        erikSundet.setType(Type.SUB);
-
-        samPetrey.addPart(Part.Violin1);
-        maijaAnstine.addPart(Part.Viola);
-        chrisBlaha.addPart(Part.Tuba);
-        erikSundet.addPart(Part.Trumpet);
-
-        playerRepo.saveAll(Arrays.asList(samPetrey, maijaAnstine, chrisBlaha, erikSundet));
-
-
+                eriS, ee, jiYoung, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV,
+                samPetrey, maijaAnstine, chrisBlaha, erikSundet));
     }
 }
