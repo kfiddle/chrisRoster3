@@ -22,7 +22,6 @@ public class PlayerBuilder {
     public String email;
     public String homePhone;
     public String cellPhone;
-
     public String addressLine1;
     public String addressLine2;
     public String city;
@@ -62,7 +61,10 @@ public class PlayerBuilder {
     }
 
     public PlayerBuilder addAPart(Part part) {
-        parts.add(part);
+        if (part != null) {
+            parts.add(part);
+
+        }
         return this;
     }
 

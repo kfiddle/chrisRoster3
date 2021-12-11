@@ -2,8 +2,11 @@ package com.example.demo;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
+import com.example.demo.models.Piece;
+import com.example.demo.models.PieceBuilder;
 import com.example.demo.models.Player;
 import com.example.demo.models.PlayerBuilder;
+import com.example.demo.repositories.PieceRepo;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +21,9 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     PlayerRepo playerRepo;
+
+    @Resource
+    PieceRepo pieceRepo;
 
     @Override
     public void run(String... args) throws Exception {
@@ -64,7 +70,6 @@ public class Populator implements CommandLineRunner {
         Player kf = new Player(new PlayerBuilder().firstNameArea("Karen").lastName("Ferren").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
         Player hl = new Player(new PlayerBuilder().firstNameArea("Howard").lastName("Lyon").type(Type.CONTRACTED).rank(8).addAPart(Part.Violin2));
 
-//        Player ln = new Player(new PlayerBuilder().firstNameArea("Louis").lastName("Lyon").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
 //        Player ln = new Player("Louis", "Nicolia");
 
         Player ee = new Player(new PlayerBuilder().firstNameArea("Emilie").lastName("Engel").type(Type.CONTRACTED).rank(9).addAPart(Part.Violin2));
@@ -93,5 +98,24 @@ public class Populator implements CommandLineRunner {
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV,
                 samPetrey, maijaAnstine, chrisBlaha, erikSundet));
+
+        pieceRepo.saveAll(Arrays.asList(new Piece(new PieceBuilder().title("Rapture").composerName("Rouse")),
+                new Piece(new PieceBuilder().title("Violin Concerto in D").composerName("Brahms")),
+                new Piece(new PieceBuilder().title("Firebird Suite(1945)").composerName("Stravinsky")),
+                new Piece(new PieceBuilder().title("The Sorcerer's Apprentice").composerName("Dukas")),
+                new Piece(new PieceBuilder().title("Concerto for Organ and Orchestra").composerName("Poulenc")),
+                new Piece(new PieceBuilder().title("Symphony in D minor").composerName("Franck")),
+                new Piece(new PieceBuilder().title("Along the Western Shore").composerName("Remick-Warren")),
+                new Piece(new PieceBuilder().title("Prelude and Liebestod from Tristan und Isolde").composerName("Wagner")),
+                new Piece(new PieceBuilder().title("Piano Concerto No. 3").composerName("Rachmaninoff")),
+                new Piece(new PieceBuilder().title("Mary Poppins (Full Film)").composerName("Sherman and Sherman")),
+                new Piece(new PieceBuilder().title("Star Wars: A New Hope ").composerName("Williams")),
+                new Piece(new PieceBuilder().title("New Work based on Harriet Tubman").composerName("Timothy Adams")),
+                new Piece(new PieceBuilder().title("Concertino da Camera for Alto Saxophone and Orchestra").composerName("Ibert")),
+                new Piece(new PieceBuilder().title("Concerto, Alto Saxophone, op.109, E-flat major").composerName("Glazunov")),
+                new Piece(new PieceBuilder().title("Symphony No. 7").composerName("Beethoven")),
+                new Piece(new PieceBuilder().title("Rise").composerName("Zhou Tian")),
+                new Piece(new PieceBuilder().title("Symphony No.2").composerName("Mahler"))));
+
     }
 }

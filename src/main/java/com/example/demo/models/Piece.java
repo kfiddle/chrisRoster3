@@ -37,6 +37,26 @@ public class Piece {
     public Piece() {
     }
 
+    public Piece(PieceBuilder pieceBuilder) {
+        prefix = pieceBuilder.prefix;
+        libNumber = pieceBuilder.libNumber;
+        suffix = pieceBuilder.suffix;
+        composerName = pieceBuilder.composerName;
+        arranger = pieceBuilder.arranger;
+        title = pieceBuilder.title;
+        otherName = pieceBuilder.otherName;
+        publisher = pieceBuilder.publisher;
+        duration = pieceBuilder.duration;
+        instrumentation = pieceBuilder.instrumentation;
+        vocalistSoloist = pieceBuilder.vocalistSoloist;
+        percBreakdown = pieceBuilder.percBreakdown;
+        notes = pieceBuilder.notes;
+        status = pieceBuilder.status;
+        sign = pieceBuilder.sign;
+        updated = pieceBuilder.updated;
+        orchestration = pieceBuilder.orchestration;;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
