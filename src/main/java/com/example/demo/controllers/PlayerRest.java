@@ -2,8 +2,8 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
-import com.example.demo.models.Player;
-import com.example.demo.models.PlayerMaker;
+import com.example.demo.models.player.Player;
+import com.example.demo.models.player.PlayerMaker;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,6 @@
-package com.example.demo.models;
+package com.example.demo.models.piece;
+
+import com.example.demo.models.NumbOnPart;
 
 import javax.persistence.ElementCollection;
 import java.time.LocalDate;

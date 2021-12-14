@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Piece;
-import com.example.demo.models.PieceMaker;
+import com.example.demo.models.piece.Piece;
+import com.example.demo.models.piece.PieceMaker;
 import com.example.demo.repositories.PieceRepo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -28,12 +29,21 @@ public class PieceRest {
         try {
             Piece newPiece = PieceMaker.makeFrom(incomingPiece);
             pieceRepo.save(newPiece);
-            System.out.println(newPiece.getTitle());
-            System.out.println(newPiece.getDuration());
-
         } catch (
                 Exception error) {
             error.printStackTrace();
+        }
+        return (Collection<Piece>) pieceRepo.findAll();
+    }
+
+    @PostMapping("edit-piece")
+    public Collection<Piece> editPieceInDatabase(@RequestBody Piece incomingPiece) throws IOException {
+
+        Optional<Piece> pieceToFind = pieceRepo.findById(incomingPiece.getId());
+        if (pieceToFind.isPresent()) {
+            Piece pieceToEdit = pieceToFind.get();
+            pieceToEdit.setAllProps(incomingPiece);
+            pieceRepo.save(pieceToEdit);
         }
         return (Collection<Piece>) pieceRepo.findAll();
     }

@@ -1,11 +1,10 @@
-package com.example.demo.models;
+package com.example.demo.models.piece;
 
-import com.example.demo.enums.Part;
+import com.example.demo.models.NumbOnPart;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 public class Piece {
@@ -204,6 +203,7 @@ public class Piece {
     public void addNumOnPart(NumbOnPart numbOnPart) {
         orchestration.add(numbOnPart);
     }
+
 
 
     public void setAllProps(Piece incoming) {

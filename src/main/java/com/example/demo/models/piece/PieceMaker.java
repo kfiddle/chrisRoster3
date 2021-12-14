@@ -1,4 +1,7 @@
-package com.example.demo.models;
+package com.example.demo.models.piece;
+
+import com.example.demo.models.piece.Piece;
+import com.example.demo.models.piece.PieceBuilder;
 
 public class PieceMaker {
 
@@ -22,8 +25,5 @@ public class PieceMaker {
                 .sign(otherPiece.getSign())
                 .updated(otherPiece.getUpdated())
                 .orchestration(otherPiece.getOrchestration()));
-
     }
-
-
 }

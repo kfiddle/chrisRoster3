@@ -1,8 +1,7 @@
 package com.example.demo.repositories;
 
-import com.example.demo.controllers.PlayerRest;
 import com.example.demo.enums.Type;
-import com.example.demo.models.Player;
+import com.example.demo.models.player.Player;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;

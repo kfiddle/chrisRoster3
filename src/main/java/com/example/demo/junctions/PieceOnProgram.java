@@ -1,8 +1,7 @@
 package com.example.demo.junctions;
 
 
-import com.example.demo.models.Performance;
-import com.example.demo.models.Piece;
+import com.example.demo.models.piece.Piece;
 
 import javax.persistence.*;
 import java.util.Collection;

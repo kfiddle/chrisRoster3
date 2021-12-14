@@ -1,17 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.enums.Part;
-import com.example.demo.junctions.PieceOnProgram;
-import com.example.demo.models.NumbOnPart;
-import com.example.demo.models.Performance;
-import com.example.demo.models.Piece;
-import com.example.demo.models.Player;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication {

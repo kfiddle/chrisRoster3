@@ -1,7 +1,7 @@
 package com.example.demo.junctions;
 
 import com.example.demo.enums.Part;
-import com.example.demo.models.Player;
+import com.example.demo.models.player.Player;
 
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;

@@ -1,5 +1,8 @@
-package com.example.demo.models;
+package com.example.demo.models.player;
 
+
+import com.example.demo.models.player.Player;
+import com.example.demo.models.player.PlayerBuilder;
 
 public class PlayerMaker {
 

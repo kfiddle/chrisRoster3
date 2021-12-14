@@ -2,13 +2,12 @@ package com.example.demo;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
-import com.example.demo.models.Piece;
-import com.example.demo.models.PieceBuilder;
-import com.example.demo.models.Player;
-import com.example.demo.models.PlayerBuilder;
+import com.example.demo.models.piece.Piece;
+import com.example.demo.models.piece.PieceBuilder;
+import com.example.demo.models.player.Player;
+import com.example.demo.models.player.PlayerBuilder;
 import com.example.demo.repositories.PieceRepo;
 import com.example.demo.repositories.PlayerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
