@@ -1,14 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Piece;
+import com.example.demo.models.PieceMaker;
 import com.example.demo.repositories.PieceRepo;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Collection;
 
 @CrossOrigin
@@ -22,6 +21,23 @@ public class PieceRest {
     public Collection<Piece> getAllPerformances() {
         return (Collection<Piece>) pieceRepo.findAll();
     }
+
+    @PostMapping("/add-piece")
+    public Collection<Piece> addPieceToDatabase(@RequestBody Piece incomingPiece) throws IOException {
+
+        try {
+            Piece newPiece = PieceMaker.makeFrom(incomingPiece);
+            pieceRepo.save(newPiece);
+            System.out.println(newPiece.getTitle());
+            System.out.println(newPiece.getDuration());
+
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return (Collection<Piece>) pieceRepo.findAll();
+    }
+
 
     @RequestMapping("get-sorted-pieces/{sortType}")
     public Collection<Piece> getSortedPieces(@PathVariable String sortType) {

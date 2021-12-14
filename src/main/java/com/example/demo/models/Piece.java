@@ -54,7 +54,7 @@ public class Piece {
         status = pieceBuilder.status;
         sign = pieceBuilder.sign;
         updated = pieceBuilder.updated;
-        orchestration = pieceBuilder.orchestration;;
+        orchestration = pieceBuilder.orchestration;
     }
 
     public void setTitle(String title) {
