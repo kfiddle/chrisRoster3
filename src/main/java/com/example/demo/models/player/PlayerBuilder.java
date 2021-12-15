@@ -15,8 +15,6 @@ public class PlayerBuilder {
     @ElementCollection
     public List<Part> parts;
 
-//    public Part primaryPart;
-
     public String firstNameArea;
     public String lastName;
     public String email;

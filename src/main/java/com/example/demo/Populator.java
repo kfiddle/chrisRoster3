@@ -2,16 +2,24 @@ package com.example.demo;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
+import com.example.demo.junctions.PieceOnProgram;
+import com.example.demo.models.DateTime;
+import com.example.demo.models.performance.Performance;
+import com.example.demo.models.performance.PerformanceBuilder;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.PieceBuilder;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerBuilder;
+import com.example.demo.repositories.PerformanceRepo;
+import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 
@@ -23,6 +31,12 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     PieceRepo pieceRepo;
+
+    @Resource
+    PerformanceRepo performanceRepo;
+
+    @Resource
+    PieceOnProgramRepo pieceOnProgramRepo;
 
     @Override
     public void run(String... args) throws Exception {
@@ -115,6 +129,65 @@ public class Populator implements CommandLineRunner {
                 new Piece(new PieceBuilder().title("Symphony No. 7").composerName("Beethoven")),
                 new Piece(new PieceBuilder().title("Rise").composerName("Zhou Tian")),
                 new Piece(new PieceBuilder().title("Symphony No.2").composerName("Mahler"))));
+
+        DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0));
+
+        DateTime pops1First = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(3, 0));
+        DateTime pops1Second = new DateTime(LocalDate.of(2021, 12, 4), LocalTime.of(8, 0));
+        DateTime pops2Date = new DateTime(LocalDate.of(2022, 1, 29), LocalTime.of(8, 0));
+        DateTime sym2Date = new DateTime(LocalDate.of(2022, 2, 26), LocalTime.of(8, 0));
+        DateTime sym3Date = new DateTime(LocalDate.of(2022, 3, 19), LocalTime.of(8, 0));
+        DateTime pops3DateFirst = new DateTime(LocalDate.of(2022, 4, 9), LocalTime.of(8, 0));
+        DateTime pops3DateSecond = new DateTime(LocalDate.of(2022, 4, 10), LocalTime.of(3, 0));
+        DateTime pops4First = new DateTime(LocalDate.of(2022, 4, 30), LocalTime.of(8, 0));
+        DateTime pops4Second = new DateTime(LocalDate.of(2022, 5, 1), LocalTime.of(3, 0));
+        DateTime sym4Date = new DateTime(LocalDate.of(2022, 5, 14), LocalTime.of(8, 0));
+        DateTime pops5Date = new DateTime(LocalDate.of(2022, 6, 12), LocalTime.of(3, 0));
+        DateTime sym5Date = new DateTime(LocalDate.of(2022, 6, 26), LocalTime.of(3, 0));
+
+        List<DateTime> pops1Dates = new ArrayList<>();
+        pops1Dates.add(pops1First);
+        pops1Dates.add(pops1Second);
+
+        List<DateTime> pops3Dates = new ArrayList<>();
+        pops3Dates.add(pops3DateFirst);
+        pops3Dates.add(pops3DateSecond);
+
+        List<DateTime> pops4Dates = new ArrayList<>();
+        pops4Dates.add(pops4First);
+        pops4Dates.add(pops4Second);
+
+
+        Performance pops1 = new Performance(new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).build());
+        Performance sym1 = new Performance(new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).build());
+        Performance pops2 = new Performance(new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).build());
+        Performance sym2 = new Performance(new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).build());
+        Performance sym3 = new Performance(new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).build());
+        Performance pops3 = new Performance(new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).build());
+        Performance pops4 = new Performance(new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).build());
+        Performance sym4 = new Performance(new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).build());
+        Performance pops5 = new Performance(new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build());
+
+        Piece test1 = new Piece(new PieceBuilder().title("Christopher Tin"));
+        Piece test2 = new Piece(new PieceBuilder().title("Cool Stuff"));
+
+        pieceRepo.save(test1);
+        pieceRepo.save(test2);
+
+        PieceOnProgram testish1 = new PieceOnProgram(test1);
+        PieceOnProgram testish2 = new PieceOnProgram(test2);
+
+        pieceOnProgramRepo.save(testish1);
+        pieceOnProgramRepo.save(testish2);
+
+        List<PieceOnProgram> testPieces = new ArrayList<>();
+
+        testPieces.add(testish1);
+        testPieces.add(testish2);
+
+        Performance sym5 = new Performance(new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).program(testPieces).build());
+        performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
+
 
     }
 }

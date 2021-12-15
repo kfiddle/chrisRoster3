@@ -26,4 +26,5 @@ public class PieceMaker {
                 .updated(otherPiece.getUpdated())
                 .orchestration(otherPiece.getOrchestration()));
     }
+
 }
