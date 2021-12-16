@@ -7,7 +7,7 @@ public class PieceMaker {
 
     public static Piece makeFrom(Piece otherPiece) {
 
-        return new Piece(new PieceBuilder()
+        return new PieceBuilder()
                 .prefix(otherPiece.getPrefix())
                 .libNumber(otherPiece.getLibNumber())
                 .suffix(otherPiece.getSuffix())
@@ -24,7 +24,8 @@ public class PieceMaker {
                 .status(otherPiece.getStatus())
                 .sign(otherPiece.getSign())
                 .updated(otherPiece.getUpdated())
-                .orchestration(otherPiece.getOrchestration()));
+                .orchestration(otherPiece.getOrchestration())
+                .build();
     }
 
 }

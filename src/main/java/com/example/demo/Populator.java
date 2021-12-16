@@ -41,9 +41,11 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Player leAnne = new Player(new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute));
-        Player seanG = new Player(new PlayerBuilder().firstNameArea("Sean").lastName("Gabriel").type(Type.CONTRACTED).rank(2).addAPart(Part.Flute));
-        Player danna = new Player(new PlayerBuilder().firstNameArea("Danna").lastName("Sundet").type(Type.CONTRACTED).rank(1).addAPart(Part.Oboe));
+//        Player leAnne = new Player(new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute));
+
+        Player leAnne = new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute).build();
+        Player seanG = new PlayerBuilder().firstNameArea("Sean").lastName("Gabriel").type(Type.CONTRACTED).rank(2).addAPart(Part.Flute).build();
+        Player danna = new PlayerBuilder().firstNameArea("Danna").lastName("Sundet").type(Type.CONTRACTED).rank(1).addAPart(Part.Oboe).build();
         Player heatherS = new Player(new PlayerBuilder().firstNameArea("Heather").lastName("Story").type(Type.CONTRACTED).rank(2).addAPart(Part.Oboe));
         Player sarahH = new Player(new PlayerBuilder().firstNameArea("Sarah").lastName("Hamilton").type(Type.CONTRACTED).rank(3).addAPart(Part.Oboe).addAPart(Part.EnglishHorn));
         Player ami = new Player(new PlayerBuilder().firstNameArea("Ami").lastName("Vardi").type(Type.CONTRACTED).rank(1).addAPart(Part.Clarinet));
@@ -107,10 +109,12 @@ public class Populator implements CommandLineRunner {
         Player chrisBlaha = new Player(new PlayerBuilder().firstNameArea("Chris").lastName("Blaha").type(Type.SUB).rank(1).addAPart(Part.Tuba));
         Player erikSundet = new Player(new PlayerBuilder().firstNameArea("Erik").lastName("Sundet").type(Type.SUB).rank(1).addAPart(Part.Trumpet));
 
+
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV,
                 samPetrey, maijaAnstine, chrisBlaha, erikSundet));
+
 
         pieceRepo.saveAll(Arrays.asList(new Piece(new PieceBuilder().title("Rapture").composerName("Rouse")),
                 new Piece(new PieceBuilder().title("Violin Concerto in D").composerName("Brahms")),
@@ -158,34 +162,36 @@ public class Populator implements CommandLineRunner {
         pops4Dates.add(pops4Second);
 
 
-        Performance pops1 = new Performance(new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).build());
-        Performance sym1 = new Performance(new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).build());
-        Performance pops2 = new Performance(new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).build());
-        Performance sym2 = new Performance(new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).build());
-        Performance sym3 = new Performance(new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).build());
-        Performance pops3 = new Performance(new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).build());
-        Performance pops4 = new Performance(new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).build());
-        Performance sym4 = new Performance(new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).build());
-        Performance pops5 = new Performance(new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build());
+        Performance pops1 = new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).build();
+        Performance sym1 = new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).build();
+        Performance pops2 = new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).build();
+        Performance sym2 = new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).build();
+        Performance sym3 = new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).build();
+        Performance pops3 = new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).build();
+        Performance pops4 = new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).build();
+        Performance sym4 = new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).build();
+        Performance pops5 = new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build();
+        Performance sym5 = new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).build();
 
-        Piece test1 = new Piece(new PieceBuilder().title("Christopher Tin"));
-        Piece test2 = new Piece(new PieceBuilder().title("Cool Stuff"));
 
-        pieceRepo.save(test1);
-        pieceRepo.save(test2);
-
-        PieceOnProgram testish1 = new PieceOnProgram(test1);
-        PieceOnProgram testish2 = new PieceOnProgram(test2);
-
-        pieceOnProgramRepo.save(testish1);
-        pieceOnProgramRepo.save(testish2);
-
-        List<PieceOnProgram> testPieces = new ArrayList<>();
-
-        testPieces.add(testish1);
-        testPieces.add(testish2);
-
-        Performance sym5 = new Performance(new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).program(testPieces).build());
+//        Piece test1 = new Piece(new PieceBuilder().title("Christopher Tin"));
+//        Piece test2 = new Piece(new PieceBuilder().title("Cool Stuff"));
+//
+//        pieceRepo.save(test1);
+//        pieceRepo.save(test2);
+//
+//        PieceOnProgram testish1 = new PieceOnProgram(test1);
+//        PieceOnProgram testish2 = new PieceOnProgram(test2);
+//
+//        pieceOnProgramRepo.save(testish1);
+//        pieceOnProgramRepo.save(testish2);
+//
+//        List<Piece> testPieces = new ArrayList<>();
+//
+//        testPieces.add(test1);
+//        testPieces.add(test2);
+//
+//        Performance sym5 = new Performance(new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).program(testPieces).build());
         performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
 
 

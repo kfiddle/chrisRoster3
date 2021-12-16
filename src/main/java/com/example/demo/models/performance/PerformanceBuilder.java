@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Optional;
 
 
 public class PerformanceBuilder {
@@ -37,29 +37,35 @@ public class PerformanceBuilder {
         rehearsalDates = new ArrayList<>();
     }
 
-    public PerformanceBuilder title(String title) {
-        if (title != null) {
-            this.title = title;
-        }
-        return this;
-    }
-
-    //    public PerformanceBuilder program(List<PieceOnProgram> program) {
-//        if (program != null) {
-//            this.program = program;
+//    public PerformanceBuilder title(String title) {
+//        if (title != null) {
+//            this.title = title;
 //        }
 //        return this;
 //    }
 
-    public PerformanceBuilder program(List<Piece> program) {
+    public PerformanceBuilder title(String title) {
+       Optional<String> titleCheck = Optional.ofNullable(title);
+       titleCheck.ifPresent(gottenTitle -> this.title = gottenTitle);
+       return this;
+    }
+
+    public PerformanceBuilder program(List<PieceOnProgram> program) {
         if (program != null) {
-            for (Piece piece : program) {
-                PieceOnProgram pieceToAdd = new PieceOnProgram(piece);
-                this.program.add(pieceToAdd);
-            }
+            this.program = program;
         }
         return this;
     }
+
+//    public PerformanceBuilder program(List<Piece> program) {
+//        if (program != null) {
+//            for (Piece piece : program) {
+//                PieceOnProgram pieceToAdd = new PieceOnProgram(piece);
+//                this.program.add(pieceToAdd);
+//            }
+//        }
+//        return this;
+//    }
 
     public PerformanceBuilder withDate(DateTime primaryDate) {
         if (primaryDate != null) {
@@ -96,8 +102,12 @@ public class PerformanceBuilder {
         return this;
     }
 
-    public PerformanceBuilder build() {
-        return this;
+//    public PerformanceBuilder build() {
+//        return this;
+//    }
+
+    public Performance build() {
+        return new Performance(this);
     }
 
 

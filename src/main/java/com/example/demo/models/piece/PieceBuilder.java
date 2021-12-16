@@ -6,6 +6,7 @@ import javax.persistence.ElementCollection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public class PieceBuilder {
 
@@ -35,129 +36,110 @@ public class PieceBuilder {
     }
 
     public PieceBuilder orchestration(Collection<NumbOnPart> numbOnParts) {
-        if (numbOnParts != null) {
-            this.orchestration = numbOnParts;
-        }
+        Optional<Collection<NumbOnPart>> numbersOpt = Optional.ofNullable(numbOnParts);
+        numbersOpt.ifPresent(gotten -> this.orchestration = gotten);
         return this;
     }
 
     public PieceBuilder prefix(String prefix) {
-        if (prefix != null) {
-            this.prefix = prefix;
-        }
+        Optional<String> prefixOpt = Optional.ofNullable(prefix);
+        prefixOpt.ifPresent(gotten -> this.prefix = gotten);
         return this;
     }
 
     public PieceBuilder libNumber(String libNumber) {
-        if (libNumber != null) {
-            this.libNumber = libNumber;
-        }
+        Optional<String> libNumberOpt = Optional.ofNullable(libNumber);
+        libNumberOpt.ifPresent(gotten -> this.libNumber = gotten);
         return this;
     }
 
     public PieceBuilder suffix(String suffix) {
-        if (suffix != null) {
-            this.suffix = suffix;
-        }
+        Optional<String> suffixOpt = Optional.ofNullable(suffix);
+        suffixOpt.ifPresent(gotten -> this.suffix = gotten);
         return this;
     }
 
     public PieceBuilder composerName(String composerName) {
-        if (composerName != null) {
-            this.composerName = composerName;
-        }
+        Optional<String> composerNameOpt = Optional.ofNullable(composerName);
+        composerNameOpt.ifPresent(gotten -> this.composerName = gotten);
         return this;
     }
 
     public PieceBuilder arranger(String arranger) {
-        if (arranger != null) {
-            this.arranger = arranger;
-        }
+        Optional<String> arrangerOpt = Optional.ofNullable(arranger);
+        arrangerOpt.ifPresent(gotten -> this.arranger = gotten);
         return this;
     }
 
     public PieceBuilder title(String title) {
-        if (title != null) {
-            this.title = title;
-        }
+        Optional<String> titleOpt = Optional.ofNullable(title);
+        titleOpt.ifPresent(gotten -> this.title = gotten);
         return this;
     }
 
     public PieceBuilder otherName(String otherName) {
-        if (otherName != null) {
-            this.otherName = otherName;
-        }
+        Optional<String> otherNameOpt = Optional.ofNullable(otherName);
+        otherNameOpt.ifPresent(gotten -> this.otherName = gotten);
         return this;
     }
 
     public PieceBuilder publisher(String publisher) {
-        if (publisher != null) {
-            this.publisher = publisher;
-        }
+        Optional<String> publisherOpt = Optional.ofNullable(publisher);
+        publisherOpt.ifPresent(gotten -> this.publisher = gotten);
         return this;
     }
 
     public PieceBuilder duration(String duration) {
-        if (duration != null) {
-            this.duration = duration;
-        }
+        Optional<String> durationOpt = Optional.ofNullable(duration);
+        durationOpt.ifPresent(gotten -> this.duration = gotten);
         return this;
     }
 
     public PieceBuilder instrumentation(String instrumentation) {
-        if (instrumentation != null) {
-            this.instrumentation = instrumentation;
-        }
+        Optional<String> instrumentationOpt = Optional.ofNullable(instrumentation);
+        instrumentationOpt.ifPresent(gotten -> this.instrumentation = gotten);
         return this;
     }
 
     public PieceBuilder vocalistSoloist(String vocalistSoloist) {
-        if (vocalistSoloist != null) {
-            this.vocalistSoloist = vocalistSoloist;
-        }
+        Optional<String> vocalistSoloistOpt = Optional.ofNullable(vocalistSoloist);
+        vocalistSoloistOpt.ifPresent(gotten -> this.vocalistSoloist = gotten);
         return this;
     }
 
     public PieceBuilder percBreakdown(String percBreakdown) {
-        if (percBreakdown != null) {
-            this.percBreakdown = percBreakdown;
-        }
+        Optional<String> percBreakdownOpt = Optional.ofNullable(percBreakdown);
+        percBreakdownOpt.ifPresent(gotten -> this.percBreakdown = gotten);
         return this;
     }
 
     public PieceBuilder notes(String notes) {
-        if (notes != null) {
-            this.notes = notes;
-        }
+        Optional<String> notesOpt = Optional.ofNullable(notes);
+        notesOpt.ifPresent(gotten -> this.notes = gotten);
         return this;
     }
 
     public PieceBuilder status(String status) {
-        if (status != null) {
-            this.status = status;
-        }
+        Optional<String> statusOpt = Optional.ofNullable(status);
+        statusOpt.ifPresent(gotten -> this.status = gotten);
         return this;
     }
 
     public PieceBuilder sign(String sign) {
-        if (sign != null) {
-            this.sign = sign;
-        }
+        Optional<String> signOpt = Optional.ofNullable(sign);
+        signOpt.ifPresent(gotten -> this.sign = gotten);
         return this;
     }
 
     public PieceBuilder updated(LocalDate updated) {
-        if (updated != null) {
-            this.updated = updated;
-        }
+        Optional<LocalDate> updatedOpt = Optional.ofNullable(updated);
+        updatedOpt.ifPresent(gotten -> this.updated = gotten);
         return this;
     }
 
-
-
-
-
-
+    public Piece build() {
+        return new Piece(this);
+    }
 
 
 }

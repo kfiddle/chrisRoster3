@@ -1,17 +1,20 @@
 package com.example.demo.models.performance;
 
+import java.util.Optional;
+
 public class PerformanceMaker {
 
-    public static Performance makeFrom(Performance otherPerformance) {
+    public static Performance makeFrom(PerformanceAdder adder) {
 
-        return new Performance(new PerformanceBuilder()
-                .title(otherPerformance.getTitle())
-                .performanceDates(otherPerformance.getPerformanceDates())
-                .rehearsalDates(otherPerformance.getRehearsalDates())
-                .numberOfServices(otherPerformance.getNumberOfServices())
-                .notes(otherPerformance.getNotes())
-                .build()
-        );
+        return new PerformanceBuilder()
+                .title(adder.performance.getTitle())
+                .performanceDates(adder.performance.getPerformanceDates())
+                .rehearsalDates(adder.performance.getRehearsalDates())
+                .numberOfServices(adder.performance.getNumberOfServices())
+                .notes(adder.performance.getNotes())
+                .build();
+
     }
+//                .program(adder.mappedPiecesToShow())
 
 }
