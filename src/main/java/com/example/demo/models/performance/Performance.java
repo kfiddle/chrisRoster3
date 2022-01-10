@@ -16,22 +16,20 @@ public class Performance implements Comparable<Performance> {
 
     private String title;
 
-    @OneToMany
-    private List<PieceOnProgram> program;
+    @OneToMany(mappedBy = "performance")
+    private List<PieceOnProgram> program = new ArrayList<>();
 
     @ElementCollection
-    private List<DateTime> performanceDates;
+    private List<DateTime> performanceDates = new ArrayList<>();
 
     @ElementCollection
-    private List<DateTime> rehearsalDates;
+    private List<DateTime> rehearsalDates = new ArrayList<>();
 
     private int numberOfServices;
 
     private String notes;
 
-
     public Performance() {
-//        program = new ArrayList<>();
     }
 
     public Performance(PerformanceBuilder performanceBuilder) {

@@ -4,7 +4,7 @@ import com.example.demo.junctions.PieceOnProgram;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.PieceMaker;
-import com.example.demo.repositories.PieceOnProgramRepo;
+//import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +21,8 @@ public class PieceRest {
     @Resource
     PieceRepo pieceRepo;
 
-    @Resource
-    PieceOnProgramRepo pieceOnProgramRepo;
+//    @Resource
+//    PieceOnProgramRepo pieceOnProgramRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {

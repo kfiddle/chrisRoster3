@@ -37,35 +37,17 @@ public class PerformanceBuilder {
         rehearsalDates = new ArrayList<>();
     }
 
-//    public PerformanceBuilder title(String title) {
-//        if (title != null) {
-//            this.title = title;
-//        }
-//        return this;
-//    }
-
     public PerformanceBuilder title(String title) {
-       Optional<String> titleCheck = Optional.ofNullable(title);
-       titleCheck.ifPresent(gottenTitle -> this.title = gottenTitle);
-       return this;
-    }
-
-    public PerformanceBuilder program(List<PieceOnProgram> program) {
-        if (program != null) {
-            this.program = program;
-        }
+        Optional<String> titleCheck = Optional.ofNullable(title);
+        titleCheck.ifPresent(gottenTitle -> this.title = gottenTitle);
         return this;
     }
 
-//    public PerformanceBuilder program(List<Piece> program) {
-//        if (program != null) {
-//            for (Piece piece : program) {
-//                PieceOnProgram pieceToAdd = new PieceOnProgram(piece);
-//                this.program.add(pieceToAdd);
-//            }
-//        }
-//        return this;
-//    }
+    public PerformanceBuilder program(List<PieceOnProgram> program) {
+        Optional<List<PieceOnProgram>> programOpt = Optional.ofNullable(program);
+        programOpt.ifPresent(gotten -> this.program = gotten);
+        return this;
+    }
 
     public PerformanceBuilder withDate(DateTime primaryDate) {
         if (primaryDate != null) {
@@ -75,16 +57,14 @@ public class PerformanceBuilder {
     }
 
     public PerformanceBuilder performanceDates(List<DateTime> performanceDates) {
-        if (performanceDates != null) {
-            this.performanceDates = performanceDates;
-        }
+        Optional<List<DateTime>> datesOpt = Optional.ofNullable(performanceDates);
+        datesOpt.ifPresent(gotten -> this.performanceDates = gotten);
         return this;
     }
 
     public PerformanceBuilder rehearsalDates(List<DateTime> rehearsalDates) {
-        if (rehearsalDates != null) {
-            this.rehearsalDates = rehearsalDates;
-        }
+        Optional<List<DateTime>> datesOpt = Optional.ofNullable(rehearsalDates);
+        datesOpt.ifPresent(gotten -> this.rehearsalDates = gotten);
         return this;
     }
 
@@ -96,15 +76,10 @@ public class PerformanceBuilder {
     }
 
     public PerformanceBuilder notes(String notes) {
-        if (notes != null) {
-            this.notes = notes;
-        }
+        Optional<String> notesOpt = Optional.ofNullable(notes);
+        notesOpt.ifPresent(gotten -> this.notes = gotten);
         return this;
     }
-
-//    public PerformanceBuilder build() {
-//        return this;
-//    }
 
     public Performance build() {
         return new Performance(this);

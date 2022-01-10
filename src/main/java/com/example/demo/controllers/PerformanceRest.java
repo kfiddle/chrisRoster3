@@ -6,8 +6,9 @@ import com.example.demo.models.performance.Performance;
 import com.example.demo.models.performance.PerformanceAdder;
 import com.example.demo.models.performance.PerformanceBuilder;
 import com.example.demo.models.performance.PerformanceMaker;
+import com.example.demo.models.piece.PieceBuilder;
 import com.example.demo.repositories.PerformanceRepo;
-import com.example.demo.repositories.PieceOnProgramRepo;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,8 +22,6 @@ public class PerformanceRest {
     @Resource
     PerformanceRepo performanceRepo;
 
-    @Resource
-    PieceOnProgramRepo pieceOnProgramRepo;
 
 
     @RequestMapping("/get-all-performances")
@@ -32,7 +31,7 @@ public class PerformanceRest {
         return sortedPerformances;
     }
 
-//    @PostMapping("add-performance")
+//    @PostMapping("/add-performance")
 //    public Collection<Performance> addAShow(@RequestBody Performance incomingPerformance) throws IOException {
 //        if (!performanceRepo.existsByTitle(incomingPerformance.getTitle())) {
 //            Performance performanceToAdd = PerformanceMaker.makeFrom(incomingPerformance);
@@ -41,16 +40,25 @@ public class PerformanceRest {
 //        return (Collection<Performance>) performanceRepo.findAll();
 //    }
 
-//    @PostMapping("add-performance")
+//    @PostMapping("/add-performance")
 //    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {
-//        if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
 //
-//            if (incoming.piecesSubmitted()) {
-//                pieceOnProgramRepo.saveAll(incoming.mappedPiecesToShow());
+//        try {
+//            if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
+//                if (incoming.piecesSubmitted()) {
+//                    pieceOnProgramRepo.saveAll(incoming.mappedPiecesToShow());
+//                    incoming.showTunes = incoming.mappedPiecesToShow();
+//                    for (PieceOnProgram piece : pieceOnProgramRepo.findAll()) {
+//                        System.out.println(piece.getPiece().getTitle());
+//                    }
+//                }
+//                performanceRepo.save(PerformanceMaker.makeFrom(incoming));
 //            }
-//            Performance performanceToAdd = PerformanceMaker.makeFrom(incoming.performance);
-//            performanceRepo.save(performanceToAdd);
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
 //        }
+//
 //        return (Collection<Performance>) performanceRepo.findAll();
 //    }
 

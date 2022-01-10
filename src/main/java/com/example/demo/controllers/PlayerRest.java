@@ -53,18 +53,8 @@ public class PlayerRest {
         try {
             if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
                 return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
-
             } else {
-                Player playerToAdd = PlayerMaker.makeFrom(incomingPlayer);
-                if (playerToAdd.getParts() != null) {
-                    for (Part part : playerToAdd.getParts()) {
-                        System.out.println(part.toString());
-                    }
-                }
-
-                playerRepo.save(playerToAdd);
-                System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName());
-                System.out.println(playerToAdd.getType() + "   " + playerToAdd.getRank());
+                playerRepo.save(PlayerMaker.makeFrom(incomingPlayer));
             }
         } catch (Exception error) {
             error.printStackTrace();

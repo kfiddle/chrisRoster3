@@ -11,7 +11,7 @@ import com.example.demo.models.piece.PieceBuilder;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerBuilder;
 import com.example.demo.repositories.PerformanceRepo;
-import com.example.demo.repositories.PieceOnProgramRepo;
+//import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.boot.CommandLineRunner;
@@ -34,14 +34,13 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     PerformanceRepo performanceRepo;
-
-    @Resource
-    PieceOnProgramRepo pieceOnProgramRepo;
+//
+//    @Resource
+//    PieceOnProgramRepo pieceOnProgramRepo;
 
     @Override
     public void run(String... args) throws Exception {
 
-//        Player leAnne = new Player(new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute));
 
         Player leAnne = new PlayerBuilder().firstNameArea("Leanne").lastName("Wistrom").type(Type.CONTRACTED).rank(1).addAPart(Part.Flute).build();
         Player seanG = new PlayerBuilder().firstNameArea("Sean").lastName("Gabriel").type(Type.CONTRACTED).rank(2).addAPart(Part.Flute).build();
@@ -84,9 +83,6 @@ public class Populator implements CommandLineRunner {
         Player cv = new Player(new PlayerBuilder().firstNameArea("Colleen").lastName("Vanderzyden").type(Type.CONTRACTED).rank(6).addAPart(Part.Violin2));
         Player kf = new Player(new PlayerBuilder().firstNameArea("Karen").lastName("Ferren").type(Type.CONTRACTED).rank(7).addAPart(Part.Violin2));
         Player hl = new Player(new PlayerBuilder().firstNameArea("Howard").lastName("Lyon").type(Type.CONTRACTED).rank(8).addAPart(Part.Violin2));
-
-//        Player ln = new Player("Louis", "Nicolia");
-
         Player ee = new Player(new PlayerBuilder().firstNameArea("Emilie").lastName("Engel").type(Type.CONTRACTED).rank(9).addAPart(Part.Violin2));
         Player jiYoung = new Player(new PlayerBuilder().firstNameArea("Ji Young").lastName("Nam").type(Type.CONTRACTED).rank(1).addAPart(Part.Viola));
         Player sy = new Player(new PlayerBuilder().firstNameArea("Si").lastName("Yu").type(Type.CONTRACTED).rank(2).addAPart(Part.Viola));

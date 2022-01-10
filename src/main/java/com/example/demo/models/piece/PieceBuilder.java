@@ -28,11 +28,10 @@ public class PieceBuilder {
     public LocalDate updated;
 
     @ElementCollection
-    public Collection<NumbOnPart> orchestration;
+    public Collection<NumbOnPart> orchestration = new ArrayList<>();
 
 
     public PieceBuilder() {
-        orchestration = new ArrayList<>();
     }
 
     public PieceBuilder orchestration(Collection<NumbOnPart> numbOnParts) {

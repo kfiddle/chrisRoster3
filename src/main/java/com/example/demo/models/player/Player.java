@@ -4,12 +4,8 @@ package com.example.demo.models.player;
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Player implements Comparable<Player> {
@@ -18,11 +14,13 @@ public class Player implements Comparable<Player> {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private Type type;
+
     private int rank;
 
     @ElementCollection
-    private List<Part> parts;
+    private List<Part> parts = new ArrayList<>();
 
     private String firstNameArea;
     private String lastName;
@@ -35,16 +33,15 @@ public class Player implements Comparable<Player> {
     private String state;
     private String zip;
 
+//    @org.hibernate.annotations.Formula("select parts[0]")
     private Part primaryPart;
 
     public Player() {
-        parts = new ArrayList<>();
     }
 
     public Player(String firstNameArea, String lastName) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        parts = new ArrayList<>();
     }
 
     public Player(PlayerBuilder playerBuilder) {

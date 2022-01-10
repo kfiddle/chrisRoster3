@@ -14,7 +14,7 @@ public class PlayerBuilder {
     public int rank;
 
     @ElementCollection
-    public List<Part> parts;
+    public List<Part> parts = new ArrayList<>();
 
     public String firstNameArea;
     public String lastName;
@@ -28,7 +28,6 @@ public class PlayerBuilder {
     public String zip;
 
     public PlayerBuilder() {
-        parts = new ArrayList<>();
     }
 
     public PlayerBuilder firstNameArea(String firstNameArea) {

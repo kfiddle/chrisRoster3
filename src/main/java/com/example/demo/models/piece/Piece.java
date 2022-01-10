@@ -1,10 +1,12 @@
 package com.example.demo.models.piece;
 
+import com.example.demo.enums.Part;
 import com.example.demo.models.NumbOnPart;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 public class Piece {
@@ -28,10 +30,18 @@ public class Piece {
     private String notes;
     private String status;
     private String sign;
+
     private LocalDate updated;
 
     @ElementCollection
-    private Collection<NumbOnPart> orchestration;
+    private Collection<NumbOnPart> orchestration = new ArrayList<>();
+
+//    @ElementCollection
+//    private Set<String> randomStrings = new HashSet<>();
+
+    @ElementCollection
+    @MapKeyEnumerated
+    private Map<Part, Integer> instrNums = new HashMap<>();
 
     public Piece() {
     }
@@ -205,7 +215,6 @@ public class Piece {
     }
 
 
-
     public void setAllProps(Piece incoming) {
         if (incoming.getPrefix() != null) {
             prefix = incoming.getPrefix();
@@ -256,8 +265,6 @@ public class Piece {
 
 
     }
-
-
 
 
 }
