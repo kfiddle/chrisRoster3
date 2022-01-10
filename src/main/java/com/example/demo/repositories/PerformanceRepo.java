@@ -12,5 +12,5 @@ public interface PerformanceRepo extends CrudRepository<Performance, Long> {
     Collection<Performance> findAll(Sort sort);
 
     boolean existsByTitle(String title);
-
+    Performance findByTitle(String title);
 }

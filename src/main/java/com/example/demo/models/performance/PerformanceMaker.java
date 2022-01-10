@@ -8,7 +8,6 @@ public class PerformanceMaker {
 
         return new PerformanceBuilder()
                 .title(adder.performance.getTitle())
-                .program(adder.showTunes)
                 .performanceDates(adder.performance.getPerformanceDates())
                 .rehearsalDates(adder.performance.getRehearsalDates())
                 .numberOfServices(adder.performance.getNumberOfServices())

@@ -6,8 +6,10 @@ import com.example.demo.models.performance.Performance;
 import com.example.demo.models.performance.PerformanceAdder;
 import com.example.demo.models.performance.PerformanceBuilder;
 import com.example.demo.models.performance.PerformanceMaker;
+import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.PieceBuilder;
 import com.example.demo.repositories.PerformanceRepo;
+import com.example.demo.repositories.PieceOnProgramRepo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,8 @@ public class PerformanceRest {
     @Resource
     PerformanceRepo performanceRepo;
 
+    @Resource
+    PieceOnProgramRepo pieceOnProgramRepo;
 
 
     @RequestMapping("/get-all-performances")
@@ -40,36 +44,56 @@ public class PerformanceRest {
 //        return (Collection<Performance>) performanceRepo.findAll();
 //    }
 
-//    @PostMapping("/add-performance")
-//    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {
-//
-//        try {
-//            if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
-//                if (incoming.piecesSubmitted()) {
-//                    pieceOnProgramRepo.saveAll(incoming.mappedPiecesToShow());
-//                    incoming.showTunes = incoming.mappedPiecesToShow();
-//                    for (PieceOnProgram piece : pieceOnProgramRepo.findAll()) {
-//                        System.out.println(piece.getPiece().getTitle());
-//                    }
-//                }
-//                performanceRepo.save(PerformanceMaker.makeFrom(incoming));
-//            }
-//        } catch (
-//                Exception error) {
-//            error.printStackTrace();
-//        }
-//
-//        return (Collection<Performance>) performanceRepo.findAll();
-//    }
+    @PostMapping("/add-performance")
+    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {
+
+        try {
+            if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
+                performanceRepo.save(PerformanceMaker.makeFrom(incoming));
+
+                if (incoming.piecesSubmitted()) {
+                    for (Piece piece : incoming.piecesToAdd) {
+                        PieceOnProgram pieceOnShow = new PieceOnProgram(piece, performanceRepo.findByTitle(incoming.performance.getTitle()));
+                        incoming.showTunes.add(pieceOnShow);
+                        pieceOnProgramRepo.save(pieceOnShow);
+                    }
+
+                    for (PieceOnProgram piece : pieceOnProgramRepo.findAll()) {
+                        System.out.println(piece.getPiece().getTitle());
+                    }
+                }
+            }
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+
+        return (Collection<Performance>) performanceRepo.findAll();
+    }
 
     @PostMapping("/get-pieces-on-program")
     public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {
-        Optional<Performance> performanceToFind = performanceRepo.findById(incomingPerformance.getId());
-        if (performanceToFind.isPresent()) {
-            Performance performanceToGrabPieces = performanceToFind.get();
-            return performanceToGrabPieces.getProgram();
+
+        try {
+            List<PieceOnProgram> showTunes = (List<PieceOnProgram>) pieceOnProgramRepo.findAllByPerformance(incomingPerformance);
+            Collections.sort(showTunes);
+            return showTunes;
+        } catch (
+                Exception error) {
+            error.printStackTrace();
         }
         return null;
     }
-
 }
+
+//    @PostMapping("/get-pieces-on-program")
+//    public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {
+//        Optional<Performance> performanceToFind = performanceRepo.findById(incomingPerformance.getId());
+//        if (performanceToFind.isPresent()) {
+//            Performance performanceToGrabPieces = performanceToFind.get();
+//            return performanceToGrabPieces.getProgram();
+//        }
+//        return null;
+//    }
+
+

@@ -16,8 +16,8 @@ public class Performance implements Comparable<Performance> {
 
     private String title;
 
-    @OneToMany(mappedBy = "performance")
-    private List<PieceOnProgram> program = new ArrayList<>();
+//    @OneToMany(mappedBy = "performance")
+//    private List<PieceOnProgram> program = new ArrayList<>();
 
     @ElementCollection
     private List<DateTime> performanceDates = new ArrayList<>();
@@ -34,7 +34,9 @@ public class Performance implements Comparable<Performance> {
 
     public Performance(PerformanceBuilder performanceBuilder) {
         this.title = performanceBuilder.title;
-        this.program = performanceBuilder.program;
+
+//        this.program = performanceBuilder.program;
+
         this.performanceDates = performanceBuilder.performanceDates;
         this.rehearsalDates = performanceBuilder.rehearsalDates;
         this.numberOfServices = performanceBuilder.numberOfServices;
@@ -45,9 +47,9 @@ public class Performance implements Comparable<Performance> {
         this.title = title;
     }
 
-    public void setProgram(List<PieceOnProgram> program) {
-        this.program = program;
-    }
+//    public void setProgram(List<PieceOnProgram> program) {
+//        this.program = program;
+//    }
 
     public void setPerformanceDates(List<DateTime> performanceDates) {
         this.performanceDates = performanceDates;
@@ -73,9 +75,9 @@ public class Performance implements Comparable<Performance> {
         return title;
     }
 
-    public List<PieceOnProgram> getProgram() {
-        return program;
-    }
+    //    public List<PieceOnProgram> getProgram() {
+//        return program;
+//    }
 
     public List<DateTime> getPerformanceDates() {
         return performanceDates;
@@ -109,16 +111,15 @@ public class Performance implements Comparable<Performance> {
         if (incoming.getNotes() != null) {
             notes = incoming.getNotes();
         }
-        if (incoming.getProgram() != null) {
-            program = incoming.getProgram();
-        }
+//        if (incoming.getProgram() != null) {
+//            program = incoming.getProgram();
+//        }
 
     }
 
     @Override
     public int compareTo(Performance next) {
         return performanceDates.get(0).getDate().compareTo(next.performanceDates.get(0).getDate());
-
     }
 }
 

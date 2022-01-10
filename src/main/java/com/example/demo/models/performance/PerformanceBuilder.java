@@ -18,23 +18,22 @@ public class PerformanceBuilder {
 
     public String title;
 
-    @OneToMany
-    public List<PieceOnProgram> program;
+//    @OneToMany
+//    public List<PieceOnProgram> program = new ArrayList<>();
 
-    @ElementCollection
-    public List<DateTime> performanceDates;
+    public List<Long> showTunesIds;
 
-    @ElementCollection
-    public List<DateTime> rehearsalDates;
+//    @ElementCollection
+    public List<DateTime> performanceDates = new ArrayList<>();;
+
+//    @ElementCollection
+    public List<DateTime> rehearsalDates = new ArrayList<>();;
 
     public int numberOfServices;
 
     public String notes;
 
     public PerformanceBuilder() {
-        program = new ArrayList<>();
-        performanceDates = new ArrayList<>();
-        rehearsalDates = new ArrayList<>();
     }
 
     public PerformanceBuilder title(String title) {
@@ -43,9 +42,15 @@ public class PerformanceBuilder {
         return this;
     }
 
-    public PerformanceBuilder program(List<PieceOnProgram> program) {
-        Optional<List<PieceOnProgram>> programOpt = Optional.ofNullable(program);
-        programOpt.ifPresent(gotten -> this.program = gotten);
+//    public PerformanceBuilder program(List<PieceOnProgram> program) {
+//        Optional<List<PieceOnProgram>> programOpt = Optional.ofNullable(program);
+//        programOpt.ifPresent(gotten -> this.program = gotten);
+//        return this;
+//    }
+
+    public PerformanceBuilder showTunesIds(List<Long> showTunesIds) {
+        Optional<List<Long>> showTunesOpt = Optional.ofNullable(showTunesIds);
+        showTunesOpt.ifPresent(gotten -> this.showTunesIds = gotten);
         return this;
     }
 

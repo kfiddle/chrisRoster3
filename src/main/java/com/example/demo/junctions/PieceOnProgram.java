@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-public class PieceOnProgram {
+public class PieceOnProgram implements Comparable<PieceOnProgram> {
 
     @Id
     @GeneratedValue
@@ -24,6 +24,8 @@ public class PieceOnProgram {
 
     @ManyToOne
     private Performance performance;
+
+    private int orderNum;
 
     @ElementCollection
     private Collection<PInChair> chairsToFill;
@@ -36,12 +38,28 @@ public class PieceOnProgram {
         this.performance = performance;
     }
 
-    public void setChairsToFill(Collection<PInChair> chairsToFill) {
-        this.chairsToFill = chairsToFill;
+    public Long getId() {
+        return id;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public Performance getPerformance() {
+        return performance;
+    }
+
+    public int getOrderNum() {
+        return orderNum;
     }
 
     public Collection<PInChair> getChairsToFill() {
         return chairsToFill;
+    }
+
+    public void setChairsToFill(Collection<PInChair> chairsToFill) {
+        this.chairsToFill = chairsToFill;
     }
 
     public void setPiece(Piece piece) {
@@ -50,5 +68,17 @@ public class PieceOnProgram {
 
     public void setPerformance(Performance performance) {
         this.performance = performance;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    @Override
+    public int compareTo(PieceOnProgram other) {
+        if (orderNum > other.getOrderNum()) {
+            return 1;
+        }
+        return 0;
     }
 }
