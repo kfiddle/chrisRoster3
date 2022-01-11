@@ -58,9 +58,6 @@ public class PerformanceRest {
                         pieceOnProgramRepo.save(pieceOnShow);
                     }
 
-                    for (PieceOnProgram piece : pieceOnProgramRepo.findAll()) {
-                        System.out.println(piece.getPiece().getTitle());
-                    }
                 }
             }
         } catch (
@@ -86,14 +83,5 @@ public class PerformanceRest {
     }
 }
 
-//    @PostMapping("/get-pieces-on-program")
-//    public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {
-//        Optional<Performance> performanceToFind = performanceRepo.findById(incomingPerformance.getId());
-//        if (performanceToFind.isPresent()) {
-//            Performance performanceToGrabPieces = performanceToFind.get();
-//            return performanceToGrabPieces.getProgram();
-//        }
-//        return null;
-//    }
 
 

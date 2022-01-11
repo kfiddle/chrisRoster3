@@ -28,7 +28,7 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
     private int orderNum;
 
     @ElementCollection
-    private Collection<PInChair> chairsToFill;
+    private Collection<PInChair> chairsToFill = new ArrayList<>();
 
     public PieceOnProgram() {
     }
@@ -36,6 +36,10 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
     public PieceOnProgram(Piece piece, Performance performance) {
         this.piece = piece;
         this.performance = performance;
+
+        if (piece.getOrchestration() != null) {
+            makeSomeEmptyChairs();
+        }
     }
 
     public Long getId() {
@@ -72,6 +76,17 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
 
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public void makeSomeEmptyChairs() {
+
+        for (NumbOnPart numbOnPart : piece.getOrchestration()) {
+            for (int j = 1; j <= numbOnPart.getNumber(); j++) {
+                PInChair chairToFill = new PInChair(numbOnPart.getPart(), j);
+                chairsToFill.add(chairToFill);
+            }
+        }
+        this.setChairsToFill(chairsToFill);
     }
 
     @Override

@@ -37,11 +37,8 @@ public class Piece {
     private Collection<NumbOnPart> orchestration = new ArrayList<>();
 
 //    @ElementCollection
-//    private Set<String> randomStrings = new HashSet<>();
-
-    @ElementCollection
-    @MapKeyEnumerated
-    private Map<Part, Integer> instrNums = new HashMap<>();
+//    @MapKeyEnumerated
+//    private Map<Part, Integer> instrNums = new HashMap<>();
 
     public Piece() {
     }

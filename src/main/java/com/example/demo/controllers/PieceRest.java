@@ -1,10 +1,12 @@
 package com.example.demo.controllers;
 
 import com.example.demo.junctions.PieceOnProgram;
+import com.example.demo.models.NumbOnPart;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.PieceMaker;
 //import com.example.demo.repositories.PieceOnProgramRepo;
+import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class PieceRest {
     @Resource
     PieceRepo pieceRepo;
 
-//    @Resource
-//    PieceOnProgramRepo pieceOnProgramRepo;
+    @Resource
+    PieceOnProgramRepo ppRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece> getAllPerformances() {
@@ -64,6 +66,27 @@ public class PieceRest {
             error.printStackTrace();
         }
         return null;
+    }
+
+    @PostMapping("/add-full-orchestration")
+    public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
+
+        Optional<Piece> pieceCheck = pieceRepo.findById(incomingPiece.getId());
+        if (pieceCheck.isPresent()) {
+            Piece pieceToAttachOrch = pieceCheck.get();
+            pieceToAttachOrch.setOrchestration(incomingPiece.getOrchestration());
+            pieceRepo.save(pieceToAttachOrch);
+
+            if (ppRepo.existsByPiece(pieceToAttachOrch)) {
+                Collection<PieceOnProgram> ppsToGetChairs = ppRepo.findAllByPiece(pieceToAttachOrch);
+                for (PieceOnProgram pp : ppsToGetChairs) {
+                    pp.makeSomeEmptyChairs();
+                    ppRepo.save(pp);
+                }
+            }
+        }
+
+        return pieceCheck;
     }
 
 
