@@ -55,6 +55,12 @@ public class PlayerBuilder {
         return this;
     }
 
+    public PlayerBuilder parts(List<Part> parts) {
+        Optional<List<Part>> partsOpt = Optional.ofNullable(parts);
+        partsOpt.ifPresent(gottenParts -> this.parts = gottenParts);
+        return this;
+    }
+
     public PlayerBuilder addAPart(Part part) {
         Optional<Part> partOpt = Optional.ofNullable(part);
         partOpt.ifPresent(gotten -> this.parts.add(gotten));
@@ -63,14 +69,14 @@ public class PlayerBuilder {
 
 
     public PlayerBuilder email(String email) {
-    Optional<String> emailOpt = Optional.ofNullable(email);
-    emailOpt.ifPresent(gotten -> this.email = gotten);
+        Optional<String> emailOpt = Optional.ofNullable(email);
+        emailOpt.ifPresent(gotten -> this.email = gotten);
         return this;
     }
 
     public PlayerBuilder homePhone(String homePhone) {
-       Optional<String> homePhoneOpt = Optional.ofNullable(homePhone);
-       homePhoneOpt.ifPresent(gotten -> this.homePhone = gotten);
+        Optional<String> homePhoneOpt = Optional.ofNullable(homePhone);
+        homePhoneOpt.ifPresent(gotten -> this.homePhone = gotten);
         return this;
     }
 
@@ -113,5 +119,6 @@ public class PlayerBuilder {
     public Player build() {
         return new Player(this);
     }
+
 
 }

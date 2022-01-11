@@ -12,6 +12,7 @@ public class PlayerMaker {
                 .firstNameArea(otherPlayer.getFirstNameArea())
                 .lastName(otherPlayer.getLastName())
                 .type(otherPlayer.getType())
+                .parts(otherPlayer.getParts())
                 .rank(otherPlayer.getRank())
                 .email(otherPlayer.getEmail())
                 .homePhone(otherPlayer.getHomePhone())

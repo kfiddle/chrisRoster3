@@ -44,7 +44,6 @@ public class PlayerRest {
         Collections.sort(playersToSendBack);
 
         return playersToSendBack;
-//        return playerRepo.findAllByType(Type.CONTRACTED);
     }
 
     @PostMapping("/add-player")
@@ -59,6 +58,8 @@ public class PlayerRest {
         } catch (Exception error) {
             error.printStackTrace();
         }
+        System.out.println(playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName()).getPrimaryPart().toString());
+
         return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
 
     }

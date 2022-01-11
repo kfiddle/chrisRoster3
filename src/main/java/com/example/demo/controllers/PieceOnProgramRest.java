@@ -25,8 +25,6 @@ public class PieceOnProgramRest {
     @PostMapping("/get-chairs-in-pp")
     public Collection<PInChair> getAllChairsInPiece(@RequestBody PieceOnProgram incomingPP) {
         Optional<PieceOnProgram> ppToFind = ppRepo.findById(incomingPP.getId());
-
-        ppToFind.ifPresent(pp -> System.out.println(pp.getChairsToFill().size()));
         return ppToFind.map(PieceOnProgram::getChairsToFill).orElse(null);
     }
 

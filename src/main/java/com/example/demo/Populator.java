@@ -105,6 +105,12 @@ public class Populator implements CommandLineRunner {
         Player chrisBlaha = new Player(new PlayerBuilder().firstNameArea("Chris").lastName("Blaha").type(Type.SUB).rank(1).addAPart(Part.Tuba));
         Player erikSundet = new Player(new PlayerBuilder().firstNameArea("Erik").lastName("Sundet").type(Type.SUB).rank(1).addAPart(Part.Trumpet));
 
+        List<Part> randomParts = new ArrayList<>();
+        randomParts.add(Part.Violin1);
+        randomParts.add(Part.Viola);
+
+        Player rando = new PlayerBuilder().firstNameArea("Rando").lastName("CalRission").parts(randomParts).type(Type.CONTRACTED).build();
+        playerRepo.save(rando);
 
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
