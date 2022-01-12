@@ -58,10 +58,7 @@ public class PlayerRest {
         } catch (Exception error) {
             error.printStackTrace();
         }
-        System.out.println(playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName()).getPrimaryPart().toString());
-
         return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
-
     }
 
     @RequestMapping("/get-all-sub-players")
@@ -71,7 +68,6 @@ public class PlayerRest {
 
     @RequestMapping("/subs/{incomingPart}")
     public Collection<Player> getSubsOfInstrument(@PathVariable String incomingPart) {
-        System.out.println(incomingPart);
         Part partToFind = Part.ofPartName(incomingPart);
         Collection<Player> playersToSend = new ArrayList<>();
         for (Player player : playerRepo.findAllByType(Type.SUB)) {

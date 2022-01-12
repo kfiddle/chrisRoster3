@@ -11,10 +11,9 @@ import java.util.Optional;
 public class PerformanceAdder {
 
     public Performance performance;
-
     public List<Piece> piecesToAdd;
-
     public List<PieceOnProgram> showTunes = new ArrayList<>();
+
 
     public boolean piecesSubmitted() {
         return piecesToAdd != null;

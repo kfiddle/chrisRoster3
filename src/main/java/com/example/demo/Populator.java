@@ -109,9 +109,6 @@ public class Populator implements CommandLineRunner {
         randomParts.add(Part.Violin1);
         randomParts.add(Part.Viola);
 
-        Player rando = new PlayerBuilder().firstNameArea("Rando").lastName("CalRission").parts(randomParts).type(Type.CONTRACTED).build();
-        playerRepo.save(rando);
-
         playerRepo.saveAll(Arrays.asList(leAnne, seanG, ami, sarahH, danna, heatherS, sarahH, benC, db, kdo, jenJ, jeffS, jiYoung, lk, lel, cr, ma, es, ba, bs, gd,
                 da, mh, wc, sb, kh, bradA, ml, mr, kj, sls, jh, melissaH, ah, stefS, yk, mp, jc, sy, benS,
                 eriS, ee, jiYoung, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV,

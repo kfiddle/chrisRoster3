@@ -6,7 +6,7 @@ import com.example.demo.enums.Part;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class NumbOnPart {
+public class NumbOnPart implements Comparable<NumbOnPart> {
 
     private Part part;
     private int number;
@@ -33,5 +33,10 @@ public class NumbOnPart {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public int compareTo(NumbOnPart other) {
+        return part.compare(other.getPart());
     }
 }

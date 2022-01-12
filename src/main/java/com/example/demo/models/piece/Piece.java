@@ -119,8 +119,10 @@ public class Piece {
         this.updated = updated;
     }
 
-    public void setOrchestration(Collection<NumbOnPart> orchestration) {
-        this.orchestration = orchestration;
+    public void setOrchestration(Collection<NumbOnPart> incomingOrchestration) {
+        List<NumbOnPart> convertedIncoming = new ArrayList<>(incomingOrchestration);
+        Collections.sort(convertedIncoming);
+        this.orchestration = convertedIncoming;
     }
 
     public void setDuration(String duration) {
