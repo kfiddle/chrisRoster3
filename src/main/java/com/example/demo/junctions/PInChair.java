@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Embeddable
 
-public class PInChair {
+public class PInChair implements Comparable<PInChair> {
 
     private Part part;
     private int rank;
@@ -46,5 +46,16 @@ public class PInChair {
 
     public Player getPlayer() {
         return player;
+    }
+
+    @Override
+    public int compareTo(PInChair other) {
+        if (part.compare(other.getPart()) != 0) {
+            return part.compare(other.getPart());
+        } else if (rank > other.getRank()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

@@ -7,10 +7,7 @@ import com.example.demo.models.piece.Piece;
 import com.example.demo.models.player.Player;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class PieceOnProgram implements Comparable<PieceOnProgram> {
@@ -28,7 +25,7 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
     private int orderNum;
 
     @ElementCollection
-    private Collection<PInChair> chairsToFill = new ArrayList<>();
+    private List<PInChair> chairsToFill = new ArrayList<>();
 
     public PieceOnProgram() {
     }
@@ -58,13 +55,14 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
         return orderNum;
     }
 
-    public Collection<PInChair> getChairsToFill() {
+    public List<PInChair> getChairsToFill() {
         return chairsToFill;
     }
 
-    public void setChairsToFill(Collection<PInChair> chairsToFill) {
+    public void setChairsToFill(List<PInChair> chairsToFill) {
         this.chairsToFill = chairsToFill;
     }
+
 
     public void setPiece(Piece piece) {
         this.piece = piece;

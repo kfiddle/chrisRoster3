@@ -4,8 +4,8 @@ import com.example.demo.models.player.Player;
 
 public class PlayerPlacer {
 
-    public PInChair pInChair;
     public PieceOnProgram pieceOnProgram;
     public Player player;
+    public int ChairsListIndex;
 
 }
