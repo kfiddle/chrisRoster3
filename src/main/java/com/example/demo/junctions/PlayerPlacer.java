@@ -6,6 +6,6 @@ public class PlayerPlacer {
 
     public PieceOnProgram pieceOnProgram;
     public Player player;
-    public int ChairsListIndex;
+    public int chairsListIndex;
 
 }

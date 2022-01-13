@@ -34,6 +34,8 @@ public class PieceOnProgramRest {
     @PostMapping("/put-player-in-chair")
     public PieceOnProgram putAPlayerInAChair(@RequestBody PlayerPlacer playerPlacer) {
 
+        System.out.println("We made it");
+
         try {
             Optional<Player> playerToFind = Optional.ofNullable(playerPlacer.player);
             Optional<PieceOnProgram> pieceOnProgramToFind = Optional.ofNullable(playerPlacer.pieceOnProgram);
@@ -42,7 +44,7 @@ public class PieceOnProgramRest {
 
                 Player foundPlayer = playerToFind.get();
                 PieceOnProgram foundPP = pieceOnProgramToFind.get();
-                foundPP.getChairsToFill().get(playerPlacer.ChairsListIndex).setPlayer(foundPlayer);
+                foundPP.getChairsToFill().get(playerPlacer.chairsListIndex).setPlayer(foundPlayer);
                 return foundPP;
             }
         } catch (
