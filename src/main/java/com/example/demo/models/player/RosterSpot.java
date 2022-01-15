@@ -6,8 +6,5 @@ import com.example.demo.junctions.PieceOnProgram;
 public class RosterSpot {
 
     public PieceOnProgram pp;
-    public Part part;
-    public int rank;
-    public Player player;
-
+    public int indexOfChair;
 }

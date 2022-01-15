@@ -3,6 +3,7 @@ package com.example.demo.models.player;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
+import com.example.demo.junctions.PInChair;
 
 import javax.persistence.*;
 import java.util.*;
@@ -33,7 +34,7 @@ public class Player implements Comparable<Player> {
     private String state;
     private String zip;
 
-//    @org.hibernate.annotations.Formula("select parts[0]")
+    //    @org.hibernate.annotations.Formula("select parts[0]")
     private Part primaryPart;
 
     public Player() {
@@ -141,6 +142,17 @@ public class Player implements Comparable<Player> {
 
     public String getZip() {
         return zip;
+    }
+
+    public boolean canPlayerSitHere(PInChair pInChair) {
+        boolean flag = false;
+        for (Part part : parts) {
+            if (part == pInChair.getPart() && rank <= pInChair.getRank()) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 
     @Override

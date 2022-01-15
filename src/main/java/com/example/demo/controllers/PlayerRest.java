@@ -2,18 +2,18 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
+import com.example.demo.junctions.PInChair;
+import com.example.demo.junctions.PieceOnProgram;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerMaker;
 import com.example.demo.models.player.RosterSpot;
+import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -22,6 +22,9 @@ public class PlayerRest {
 
     @Resource
     PlayerRepo playerRepo;
+
+    @Resource
+    PieceOnProgramRepo ppRepo;
 
     @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
@@ -84,14 +87,25 @@ public class PlayerRest {
     @PostMapping("/get-possible-players")
     public List<Player> getPossiblePlayersForAChair(@RequestBody RosterSpot incomingSpot) {
 
-        List<Player> playersToSend = new ArrayList<>();
+        try {
+            List<Player> playersToSend = new ArrayList<>();
+            Optional<PieceOnProgram> ppToFind = ppRepo.findById(incomingSpot.pp.getId());
+            if (ppToFind.isPresent()) {
+                PieceOnProgram foundPP = ppToFind.get();
+                PInChair chairToCheck = foundPP.getChairsToFill().get(incomingSpot.indexOfChair);
+                for (Player player : playerRepo.findAll()) {
+                    if (!foundPP.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
+                        playersToSend.add(player);
+                    }
+                }
+            }
 
-        for (Player player : playerRepo.findAll()) {
+            Collections.sort(playersToSend);
+            return playersToSend;
 
+        } catch (Exception error) {
+            error.printStackTrace();
         }
-
-
-
+        return null;
     }
-
 }

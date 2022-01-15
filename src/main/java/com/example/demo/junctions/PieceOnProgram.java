@@ -87,6 +87,15 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
         this.setChairsToFill(chairsToFill);
     }
 
+    public boolean playerIsOnThis(Player player) {
+        boolean flag = false;
+        for (PInChair pInChair : chairsToFill) {
+            if (pInChair.getPlayer().equals(player)) {
+                flag = true;
+            }
+        } return flag;
+    }
+
     @Override
     public int compareTo(PieceOnProgram other) {
         if (orderNum > other.getOrderNum()) {
