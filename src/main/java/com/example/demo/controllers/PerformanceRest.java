@@ -31,18 +31,18 @@ public class PerformanceRest {
     @RequestMapping("/get-all-performances")
     public Collection<Performance> getAllPerformances() {
         List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
-        Collections.sort(sortedPerformances);
-        return sortedPerformances;
-    }
 
-//    @PostMapping("/add-performance")
-//    public Collection<Performance> addAShow(@RequestBody Performance incomingPerformance) throws IOException {
-//        if (!performanceRepo.existsByTitle(incomingPerformance.getTitle())) {
-//            Performance performanceToAdd = PerformanceMaker.makeFrom(incomingPerformance);
-//            performanceRepo.save(performanceToAdd);
-//        }
-//        return (Collection<Performance>) performanceRepo.findAll();
-//    }
+        try {
+            Collections.sort(sortedPerformances);
+            return sortedPerformances;
+
+        } catch (Exception error){
+            error.printStackTrace();
+        }
+
+        return (Collection<Performance>) performanceRepo.findAll();
+
+    }
 
     @PostMapping("/add-performance")
     public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {

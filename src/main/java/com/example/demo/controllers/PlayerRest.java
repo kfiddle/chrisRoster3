@@ -4,6 +4,7 @@ import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerMaker;
+import com.example.demo.models.player.RosterSpot;
 import com.example.demo.repositories.PlayerRepo;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,6 +79,19 @@ public class PlayerRest {
             }
         }
         return playersToSend;
+    }
+
+    @PostMapping("/get-possible-players")
+    public List<Player> getPossiblePlayersForAChair(@RequestBody RosterSpot incomingSpot) {
+
+        List<Player> playersToSend = new ArrayList<>();
+
+        for (Player player : playerRepo.findAll()) {
+
+        }
+
+
+
     }
 
 }
