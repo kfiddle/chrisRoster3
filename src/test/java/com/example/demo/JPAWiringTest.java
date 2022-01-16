@@ -21,6 +21,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,18 +66,57 @@ public class JPAWiringTest {
         Player retrievedSam = playerRepo.findByFirstNameAreaAndLastName("Sam", "Elliot");
 
         PInChair samsChair = new PInChair(Part.Violin1, 3);
+        List<PInChair> chairs = new ArrayList<>();
+        chairs.add(samsChair);
 
         retrievedSam.addPart(Part.Violin1);
         retrievedSam.setRank(2);
+
+        firstOnShow.setChairsToFill(chairs);
         assertTrue(retrievedSam.canPlayerSitHere(samsChair));
 
+        samsChair.setPlayer(retrievedSam);
+        assertEquals(retrievedSam, samsChair.getPlayer());
+        assertEquals(firstOnShow.getChairsToFill().size(), 1);
+        assertTrue(firstOnShow.playerIsOnThis(retrievedSam));
+    }
 
+    @Test
+    public void shouldTestAllPlayersInRepoOnShow() {
 
+        Performance testShow1 = new Performance();
+        performanceRepo.save(testShow1);
 
+        Piece firstPiece = new PieceBuilder().title("First Piece").build();
+        pieceRepo.save(firstPiece);
 
+        PieceOnProgram firstOnShow = new PieceOnProgram(firstPiece, testShow1);
+        ppRepo.save(firstOnShow);
+
+        Player testPlayer1 = new PlayerBuilder().firstNameArea("Sam").lastName("Elliot").build();
+        Player testPlayer2 = new PlayerBuilder().firstNameArea("River").lastName("Phoenix").build();
+        Player testPlayer3 = new PlayerBuilder().firstNameArea("Karen").lastName("Carpenter").build();
+
+        playerRepo.saveAll(Arrays.asList(testPlayer1, testPlayer2, testPlayer3));
+
+        PInChair samsChair = new PInChair(Part.Violin1, 3);
+        samsChair.setPlayer(playerRepo.findByFirstNameAreaAndLastName("Sam", "Elliot"));
+        List<PInChair> chairs = new ArrayList<>();
+        chairs.add(samsChair);
+
+        firstOnShow.setChairsToFill(chairs);
+
+        boolean flag = false;
+
+        for (Player player : playerRepo.findAll()) {
+            if (firstOnShow.playerIsOnThis(player)) {
+                flag = true;
+                System.out.println(player.getFirstNameArea());
+            }
+        }
+        assertFalse(flag);
 
 
     }
-
 
 }

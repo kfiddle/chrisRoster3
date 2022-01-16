@@ -48,6 +48,10 @@ public class PInChair implements Comparable<PInChair> {
         return player;
     }
 
+    public boolean hasThisPlayer(Player player) {
+        return player != null && player.equals(player);
+    }
+
     @Override
     public int compareTo(PInChair other) {
         if (part.compare(other.getPart()) != 0) {

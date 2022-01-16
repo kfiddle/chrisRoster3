@@ -42,8 +42,6 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-
-
         List<Player> playersToSendBack = (List<Player>) playerRepo.findAllByType(Type.CONTRACTED);
         Collections.sort(playersToSendBack);
 
@@ -89,26 +87,24 @@ public class PlayerRest {
 
         try {
 
-//            List<Player> playersToSend = new ArrayList<>();
+            List<Player> playersToSend = new ArrayList<>();
 
 
             Optional<PieceOnProgram> ppToFind = ppRepo.findById(incomingSpot.pp.getId());
             if (ppToFind.isPresent()) {
                 PieceOnProgram foundPP = ppToFind.get();
-                
+
                 PInChair chairToCheck = foundPP.getChairsToFill().get(incomingSpot.indexOfChair);
 
-                System.out.println(chairToCheck.getPart().toString() + "    " + chairToCheck.getRank());
-//                for (Player player : playerRepo.findAll()) {
-//                    if (!foundPP.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
-//                        playersToSend.add(player);
-//                    }
-//                }
+                for (Player player : playerRepo.findAll()) {
+                    if (!foundPP.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
+                        playersToSend.add(player);
+                    }
+                }
             }
-//            Collections.sort(playersToSend);
-//            return playersToSend;
+            Collections.sort(playersToSend);
+            return playersToSend;
 
-            return (List<Player>) playerRepo.findAll();
 
         } catch (Exception error) {
             error.printStackTrace();

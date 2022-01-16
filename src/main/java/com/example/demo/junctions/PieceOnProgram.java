@@ -90,7 +90,7 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
     public boolean playerIsOnThis(Player player) {
         boolean flag = false;
         for (PInChair pInChair : chairsToFill) {
-            if (pInChair.getPlayer().equals(player)) {
+            if (pInChair.hasThisPlayer(player)) {
                 flag = true;
             }
         } return flag;
