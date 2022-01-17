@@ -28,10 +28,8 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-//@ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class JPAWiringTest {
-
 
     @Autowired
     private TestEntityManager testEntityManager;
@@ -115,8 +113,6 @@ public class JPAWiringTest {
             }
         }
         assertFalse(flag);
-
-
     }
 
 }

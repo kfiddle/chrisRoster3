@@ -48,8 +48,8 @@ public class PInChair implements Comparable<PInChair> {
         return player;
     }
 
-    public boolean hasThisPlayer(Player player) {
-        return player != null && player.equals(player);
+    public boolean hasThisPlayer(Player incomingPlayer) {
+        return player != null && player.equals(incomingPlayer);
     }
 
     @Override
