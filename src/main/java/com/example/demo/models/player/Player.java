@@ -162,8 +162,6 @@ public class Player implements Comparable<Player> {
             return primaryPart.compare(otherPlayer.getPrimaryPart());
         } else if (rank > otherPlayer.getRank()) {
             return 1;
-        } else {
-            return -1;
-        }
+        } else return type.compare(otherPlayer.getType());
     }
 }

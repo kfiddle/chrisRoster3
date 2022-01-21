@@ -88,8 +88,6 @@ public class PlayerRest {
         try {
 
             List<Player> playersToSend = new ArrayList<>();
-
-
             Optional<PieceOnProgram> ppToFind = ppRepo.findById(incomingSpot.pp.getId());
             if (ppToFind.isPresent()) {
                 PieceOnProgram foundPP = ppToFind.get();
@@ -97,7 +95,6 @@ public class PlayerRest {
                 for (Player player : playerRepo.findAll()) {
                     if (!foundPP.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
                         playersToSend.add(player);
-                        System.out.println(player.getLastName());
                     }
                 }
             }
