@@ -31,6 +31,8 @@ public class PieceRest {
         return (Collection<Piece>) pieceRepo.findAll();
     }
 
+
+
     @PostMapping("/add-piece")
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece incomingPiece) throws IOException {
 
