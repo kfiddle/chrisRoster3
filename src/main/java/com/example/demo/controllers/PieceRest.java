@@ -32,7 +32,6 @@ public class PieceRest {
     }
 
 
-
     @PostMapping("/add-piece")
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece incomingPiece) throws IOException {
 
