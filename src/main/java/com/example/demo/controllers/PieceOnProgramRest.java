@@ -4,7 +4,6 @@ package com.example.demo.controllers;
 import com.example.demo.junctions.PInChair;
 import com.example.demo.junctions.PieceOnProgram;
 import com.example.demo.junctions.PlayerPlacer;
-import com.example.demo.models.piece.Piece;
 import com.example.demo.models.player.Player;
 import com.example.demo.repositories.PieceOnProgramRepo;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,12 +30,14 @@ public class PieceOnProgramRest {
     }
 
 
+
     @PostMapping("/put-player-in-chair")
-    public PieceOnProgram putAPlayerInAChair(@RequestBody PlayerPlacer playerPlacer) {
+    public Optional<PieceOnProgram> putAPlayerInAChair(@RequestBody PlayerPlacer playerPlacer) {
 
         try {
             Optional<Player> playerToFind = Optional.ofNullable(playerPlacer.player);
-            Optional<PieceOnProgram> pieceOnProgramToFind = Optional.ofNullable(playerPlacer.pieceOnProgram);
+//            Optional<PieceOnProgram> pieceOnProgramToFind = Optional.ofNullable(playerPlacer.pieceOnProgram);
+            Optional<PieceOnProgram> pieceOnProgramToFind = ppRepo.findById(playerPlacer.ppId);
 
             if (playerToFind.isPresent() && pieceOnProgramToFind.isPresent()) {
 
@@ -44,14 +45,14 @@ public class PieceOnProgramRest {
                 PieceOnProgram foundPP = pieceOnProgramToFind.get();
                 foundPP.getChairsToFill().get(playerPlacer.chairsListIndex).setPlayer(foundPlayer);
                 ppRepo.save(foundPP);
-                return foundPP;
+                return ppRepo.findById(foundPP.getId());
             }
         } catch (
                 Exception error) {
             error.printStackTrace();
 
         }
-        return null;
+        return Optional.empty();
     }
 
 
