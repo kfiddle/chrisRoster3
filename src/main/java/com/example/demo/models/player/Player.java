@@ -155,6 +155,56 @@ public class Player implements Comparable<Player> {
         return flag;
     }
 
+    public void setAllProps(Player otherPlayer) {
+
+        if (otherPlayer.getFirstNameArea() != null) {
+            firstNameArea = otherPlayer.getFirstNameArea();
+        }
+        if (otherPlayer.getLastName() != null) {
+            lastName = otherPlayer.getLastName();
+        }
+        if (otherPlayer.getType() != null) {
+            type = otherPlayer.getType();
+        }
+        if (otherPlayer.getParts() != null) {
+            parts = otherPlayer.getParts();
+            primaryPart = parts.get(0);
+        }
+        if (otherPlayer.getRank() > 0) {
+            rank = otherPlayer.getRank();
+        }
+        if (otherPlayer.getEmail() != null) {
+            email = otherPlayer.getEmail();
+        }
+        if (otherPlayer.getHomePhone() != null) {
+            homePhone = otherPlayer.getHomePhone();
+        }
+        if (otherPlayer.getCellPhone() != null) {
+            cellPhone = otherPlayer.getCellPhone();
+        }
+        if (otherPlayer.getAddressLine1() != null) {
+            addressLine1 = otherPlayer.getAddressLine1();
+        }
+
+        if (otherPlayer.getAddressLine2() != null) {
+            addressLine2 = otherPlayer.getAddressLine2();
+        }
+
+        if (otherPlayer.getCity() != null) {
+            city = otherPlayer.getCity();
+        }
+
+        if (otherPlayer.getState() != null) {
+            state = otherPlayer.getState();
+        }
+
+        if (otherPlayer.getZip() != null) {
+            zip = otherPlayer.getZip();
+        }
+
+
+    }
+
     @Override
     public int compareTo(Player otherPlayer) {
 

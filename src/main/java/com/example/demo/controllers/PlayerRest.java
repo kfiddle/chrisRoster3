@@ -4,6 +4,7 @@ import com.example.demo.enums.Part;
 import com.example.demo.enums.Type;
 import com.example.demo.junctions.PInChair;
 import com.example.demo.junctions.PieceOnProgram;
+import com.example.demo.models.piece.Piece;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerMaker;
 import com.example.demo.models.player.RosterSpot;
@@ -62,6 +63,19 @@ public class PlayerRest {
         }
         return playerRepo.findByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
     }
+
+    @PostMapping("/edit-player")
+    public Collection<Player> editPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+
+        Optional<Player> playerToFind = playerRepo.findById(incomingPlayer.getId());
+        if (playerToFind.isPresent()) {
+            Player playerToEdit = playerToFind.get();
+            playerToEdit.setAllProps(incomingPlayer);
+            playerRepo.save(playerToEdit);
+        }
+        return (Collection<Player>) playerRepo.findAll();
+    }
+
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubs() {
