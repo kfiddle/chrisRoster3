@@ -76,7 +76,7 @@ public class JPAWiringTest {
         samsChair.setPlayer(retrievedSam);
         assertEquals(retrievedSam, samsChair.getPlayer());
         assertEquals(firstOnShow.getChairsToFill().size(), 1);
-        assertTrue(firstOnShow.playerIsOnThis(retrievedSam));
+        assertTrue(firstOnShow.playerIsOnThisPiece(retrievedSam));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class JPAWiringTest {
         boolean flag = false;
 
         for (Player player : playerRepo.findAll()) {
-            if (firstOnShow.playerIsOnThis(player)) {
+            if (firstOnShow.playerIsOnThisPiece(player)) {
                 flag = true;
                 System.out.println(player.getFirstNameArea());
             }

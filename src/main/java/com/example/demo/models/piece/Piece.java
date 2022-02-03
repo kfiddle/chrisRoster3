@@ -1,9 +1,5 @@
 package com.example.demo.models.piece;
 
-import com.example.demo.enums.Part;
-import com.example.demo.models.NumbOnPart;
-import org.hibernate.annotations.GenerationTime;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -35,6 +31,9 @@ public class Piece {
 
     @ElementCollection
     private Collection<NumbOnPart> orchestration = new ArrayList<>();
+
+    @ElementCollection
+    private Collection<Doubling> doublings = new ArrayList<>();
 
 //    @ElementCollection
 //    @MapKeyEnumerated
@@ -125,6 +124,10 @@ public class Piece {
         this.orchestration = convertedIncoming;
     }
 
+    public void setDoublings(Collection<Doubling> doublings) {
+        this.doublings = doublings;
+    }
+
     public void setDuration(String duration) {
         this.duration = duration;
     }
@@ -207,6 +210,10 @@ public class Piece {
 
     public Collection<NumbOnPart> getOrchestration() {
         return orchestration;
+    }
+
+    public Collection<Doubling> getDoublings() {
+        return doublings;
     }
 
     public void addNumOnPart(NumbOnPart numbOnPart) {

@@ -4,6 +4,8 @@ import com.example.demo.enums.Part;
 import com.example.demo.models.player.Player;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Embeddable
@@ -11,6 +13,7 @@ import javax.persistence.*;
 public class PInChair implements Comparable<PInChair> {
 
     private Part part;
+
     private int rank;
 
     @ManyToOne

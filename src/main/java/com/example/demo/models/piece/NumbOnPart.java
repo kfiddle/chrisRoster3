@@ -1,14 +1,18 @@
-package com.example.demo.models;
+package com.example.demo.models.piece;
 
 
 import com.example.demo.enums.Part;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Embeddable
 public class NumbOnPart implements Comparable<NumbOnPart> {
 
     private Part part;
+
     private int number;
 
     public NumbOnPart() {

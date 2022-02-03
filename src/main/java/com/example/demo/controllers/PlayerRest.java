@@ -106,8 +106,8 @@ public class PlayerRest {
             if (ppToFind.isPresent()) {
                 PieceOnProgram foundPP = ppToFind.get();
                 PInChair chairToCheck = foundPP.getChairsToFill().get(incomingSpot.indexOfChair);
-                for (Player player : playerRepo.findAll()) {
-                    if (!foundPP.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
+                for (Player player : playerRepo.findAllByType(Type.CONTRACTED)) {
+                    if (!foundPP.playerIsOnThisPiece(player) && player.canPlayerSitHere(chairToCheck)) {
                         playersToSend.add(player);
                     }
                 }

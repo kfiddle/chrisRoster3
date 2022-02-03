@@ -1,7 +1,7 @@
 package com.example.demo.junctions;
 
 
-import com.example.demo.models.NumbOnPart;
+import com.example.demo.models.piece.NumbOnPart;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.player.Player;
@@ -87,7 +87,7 @@ public class PieceOnProgram implements Comparable<PieceOnProgram> {
         this.setChairsToFill(chairsToFill);
     }
 
-    public boolean playerIsOnThis(Player player) {
+    public boolean playerIsOnThisPiece(Player player) {
         boolean flag = false;
         for (PInChair pInChair : chairsToFill) {
             if (pInChair.hasThisPlayer(player)) {

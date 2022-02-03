@@ -1,7 +1,5 @@
 package com.example.demo.models.piece;
 
-import com.example.demo.models.NumbOnPart;
-
 import javax.persistence.ElementCollection;
 import java.time.LocalDate;
 import java.util.ArrayList;

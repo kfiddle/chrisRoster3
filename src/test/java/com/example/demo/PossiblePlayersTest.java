@@ -138,7 +138,7 @@ public class PossiblePlayersTest {
         List<Player> playersList = new ArrayList<>();
         PInChair chairToCheck = firstOnShow.getChairsToFill().get(indexToTest);
         for (Player player : playerRepo.findAll()) {
-            if (!firstOnShow.playerIsOnThis(player) && player.canPlayerSitHere(chairToCheck)) {
+            if (!firstOnShow.playerIsOnThisPiece(player) && player.canPlayerSitHere(chairToCheck)) {
                 playersList.add(player);
                 System.out.println(player.getLastName());
             }

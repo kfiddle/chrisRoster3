@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.junctions.PieceOnProgram;
-import com.example.demo.models.NumbOnPart;
-import com.example.demo.models.performance.Performance;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.PieceMaker;
 //import com.example.demo.repositories.PieceOnProgramRepo;
@@ -76,6 +74,11 @@ public class PieceRest {
         if (pieceCheck.isPresent()) {
             Piece pieceToAttachOrch = pieceCheck.get();
             pieceToAttachOrch.setOrchestration(incomingPiece.getOrchestration());
+
+            if (!incomingPiece.getDoublings().isEmpty()) {
+                pieceToAttachOrch.setDoublings(incomingPiece.getDoublings());
+            }
+
             pieceRepo.save(pieceToAttachOrch);
 
             if (ppRepo.existsByPiece(pieceToAttachOrch)) {
