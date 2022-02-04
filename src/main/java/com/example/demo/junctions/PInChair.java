@@ -1,6 +1,7 @@
 package com.example.demo.junctions;
 
 import com.example.demo.enums.Part;
+import com.example.demo.models.PartsList;
 import com.example.demo.models.player.Player;
 
 import javax.persistence.*;
@@ -13,8 +14,10 @@ import java.util.List;
 public class PInChair implements Comparable<PInChair> {
 
     private Part part;
-
     private int rank;
+
+    private Part part2;
+    private Part part3;
 
     @ManyToOne
     private Player player;
@@ -27,6 +30,19 @@ public class PInChair implements Comparable<PInChair> {
         this.rank = rank;
     }
 
+    public PInChair(Part part, int rank, Part part2) {
+        this.part = part;
+        this.rank = rank;
+        this.part2 = part2;
+    }
+
+    public PInChair(Part part, int rank, Part part2, Part part3) {
+        this.part = part;
+        this.rank = rank;
+        this.part2 = part2;
+        this.part3 = part3;
+    }
+
     public void setPart(Part part) {
         this.part = part;
     }
@@ -35,8 +51,20 @@ public class PInChair implements Comparable<PInChair> {
         this.rank = rank;
     }
 
+    public void setPart2(Part part2) {
+        this.part2 = part2;
+    }
+
+    public void setPart3(Part part3) {
+        this.part3 = part3;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public boolean hasThisPlayer(Player incomingPlayer) {
+        return player != null && player.equals(incomingPlayer);
     }
 
     public Part getPart() {
@@ -47,12 +75,16 @@ public class PInChair implements Comparable<PInChair> {
         return rank;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Part getPart2() {
+        return part2;
     }
 
-    public boolean hasThisPlayer(Player incomingPlayer) {
-        return player != null && player.equals(incomingPlayer);
+    public Part getPart3() {
+        return part3;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     @Override

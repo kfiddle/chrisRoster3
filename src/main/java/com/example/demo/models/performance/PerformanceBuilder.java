@@ -1,6 +1,7 @@
 package com.example.demo.models.performance;
 
 import com.example.demo.junctions.PieceOnProgram;
+import com.example.demo.junctions.ShowTune;
 import com.example.demo.models.DateTime;
 import com.example.demo.models.piece.Piece;
 
@@ -32,6 +33,7 @@ public class PerformanceBuilder {
     public int numberOfServices;
 
     public String notes;
+    public List<ShowTune> showTunes;
 
     public PerformanceBuilder() {
     }
@@ -42,11 +44,11 @@ public class PerformanceBuilder {
         return this;
     }
 
-//    public PerformanceBuilder program(List<PieceOnProgram> program) {
-//        Optional<List<PieceOnProgram>> programOpt = Optional.ofNullable(program);
-//        programOpt.ifPresent(gotten -> this.program = gotten);
-//        return this;
-//    }
+    public PerformanceBuilder showTunes(List<ShowTune> showTunes) {
+        Optional<List<ShowTune>> showTunesOpt = Optional.ofNullable(showTunes);
+        showTunesOpt.ifPresent(gotten -> this.showTunes = gotten);
+        return this;
+    }
 
     public PerformanceBuilder showTunesIds(List<Long> showTunesIds) {
         Optional<List<Long>> showTunesOpt = Optional.ofNullable(showTunesIds);

@@ -1,9 +1,11 @@
 package com.example.demo.junctions;
 
 
+import com.example.demo.models.PartsList;
 import com.example.demo.models.piece.NumbOnPart;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.piece.Piece;
+import com.example.demo.models.piece.Piece2;
 import com.example.demo.models.player.Player;
 
 import javax.persistence.*;
