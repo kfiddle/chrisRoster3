@@ -28,4 +28,28 @@ public class PieceMaker {
                 .build();
     }
 
+    public static Piece2 makeUsing(Piece2 otherPiece) {
+
+        return new PieceBuilder()
+                .prefix(otherPiece.getPrefix())
+                .libNumber(otherPiece.getLibNumber())
+                .suffix(otherPiece.getSuffix())
+                .composerName(otherPiece.getComposerName())
+                .arranger(otherPiece.getArranger())
+                .title(otherPiece.getTitle())
+                .otherName(otherPiece.getOtherName())
+                .publisher(otherPiece.getPublisher())
+                .duration(otherPiece.getDuration())
+                .instrumentation(otherPiece.getInstrumentation())
+                .vocalistSoloist(otherPiece.getVocalistSoloist())
+                .percBreakdown(otherPiece.getPercBreakdown())
+                .notes(otherPiece.getNotes())
+                .status(otherPiece.getStatus())
+                .sign(otherPiece.getSign())
+                .updated(otherPiece.getUpdated())
+                .scoreLines(otherPiece.getScoreLines())
+                .buildNew();
+
+    }
+
 }

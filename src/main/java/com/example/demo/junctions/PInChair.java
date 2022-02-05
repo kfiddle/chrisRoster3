@@ -10,7 +10,6 @@ import java.util.List;
 
 
 @Embeddable
-
 public class PInChair implements Comparable<PInChair> {
 
     private Part part;

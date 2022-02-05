@@ -15,15 +15,11 @@ import java.util.List;
 @Entity
 public class Show {
 
-
     @Id
     @GeneratedValue
     private Long id;
 
     private String title;
-
-    @ElementCollection
-    private List<ShowTune> showTunes;
 
     @ElementCollection
     private List<DateTime> performanceDates = new ArrayList<>();
@@ -38,14 +34,55 @@ public class Show {
     public Show() {
     }
 
-
     public Show(PerformanceBuilder performanceBuilder) {
         this.title = performanceBuilder.title;
-        this.showTunes = performanceBuilder.showTunes;
         this.performanceDates = performanceBuilder.performanceDates;
         this.rehearsalDates = performanceBuilder.rehearsalDates;
         this.numberOfServices = performanceBuilder.numberOfServices;
         this.notes = performanceBuilder.notes;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPerformanceDates(List<DateTime> performanceDates) {
+        this.performanceDates = performanceDates;
+    }
+
+    public void setRehearsalDates(List<DateTime> rehearsalDates) {
+        this.rehearsalDates = rehearsalDates;
+    }
+
+    public void setNumberOfServices(int numberOfServices) {
+        this.numberOfServices = numberOfServices;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<DateTime> getPerformanceDates() {
+        return performanceDates;
+    }
+
+    public List<DateTime> getRehearsalDates() {
+        return rehearsalDates;
+    }
+
+    public int getNumberOfServices() {
+        return numberOfServices;
+    }
+
+    public String getNotes() {
+        return notes;
     }
 }

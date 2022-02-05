@@ -13,8 +13,17 @@ public class PerformanceMaker {
                 .numberOfServices(adder.performance.getNumberOfServices())
                 .notes(adder.performance.getNotes())
                 .build();
-
     }
-//                .program(adder.mappedPiecesToShow())
+
+    public static Show makeUsing(Show show) {
+        return new PerformanceBuilder()
+                .title(show.getTitle())
+                .performanceDates(show.getPerformanceDates())
+                .rehearsalDates(show.getRehearsalDates())
+                .numberOfServices(show.getNumberOfServices())
+                .notes(show.getNotes())
+                .buildNew();
+    }
+
 
 }

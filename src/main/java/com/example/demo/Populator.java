@@ -7,6 +7,7 @@ import com.example.demo.models.DateTime;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.performance.PerformanceBuilder;
 import com.example.demo.models.piece.Piece;
+import com.example.demo.models.piece.Piece2;
 import com.example.demo.models.piece.PieceBuilder;
 import com.example.demo.models.player.Player;
 import com.example.demo.models.player.PlayerBuilder;
@@ -14,6 +15,8 @@ import com.example.demo.repositories.PerformanceRepo;
 //import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
 import com.example.demo.repositories.PlayerRepo;
+import com.example.demo.repositories.take2Repos.Piece2Repo;
+import com.example.demo.repositories.take2Repos.ShowRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -29,14 +32,18 @@ public class Populator implements CommandLineRunner {
     @Resource
     PlayerRepo playerRepo;
 
+//    @Resource
+//    PieceRepo pieceRepo;
+
     @Resource
-    PieceRepo pieceRepo;
+    Piece2Repo piece2Repo;
 
     @Resource
     PerformanceRepo performanceRepo;
-//
-//    @Resource
-//    PieceOnProgramRepo pieceOnProgramRepo;
+
+    @Resource
+    ShowRepo showRepo;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -114,24 +121,43 @@ public class Populator implements CommandLineRunner {
                 eriS, ee, jiYoung, cv, kf, hl, wt, tobias, jiyeonY, jenJ, mp, jc, jm, nadineS, bn, jv, kieranH, josephH, tomC, jamesM, mariaP, mikeChen, dianaV,
                 samPetrey, maijaAnstine, chrisBlaha, erikSundet));
 
+//
+//        pieceRepo.saveAll(Arrays.asList(new Piece(new PieceBuilder().title("Rapture").composerName("Rouse")),
+//                new Piece(new PieceBuilder().title("Violin Concerto in D").composerName("Brahms")),
+//                new Piece(new PieceBuilder().title("Firebird Suite(1945)").composerName("Stravinsky")),
+//                new Piece(new PieceBuilder().title("The Sorcerer's Apprentice").composerName("Dukas")),
+//                new Piece(new PieceBuilder().title("Concerto for Organ and Orchestra").composerName("Poulenc")),
+//                new Piece(new PieceBuilder().title("Symphony in D minor").composerName("Franck")),
+//                new Piece(new PieceBuilder().title("Along the Western Shore").composerName("Remick-Warren")),
+//                new Piece(new PieceBuilder().title("Prelude and Liebestod from Tristan und Isolde").composerName("Wagner")),
+//                new Piece(new PieceBuilder().title("Piano Concerto No. 3").composerName("Rachmaninoff")),
+//                new Piece(new PieceBuilder().title("Mary Poppins (Full Film)").composerName("Sherman and Sherman")),
+//                new Piece(new PieceBuilder().title("Star Wars: A New Hope ").composerName("Williams")),
+//                new Piece(new PieceBuilder().title("New Work based on Harriet Tubman").composerName("Timothy Adams")),
+//                new Piece(new PieceBuilder().title("Concertino da Camera for Alto Saxophone and Orchestra").composerName("Ibert")),
+//                new Piece(new PieceBuilder().title("Concerto, Alto Saxophone, op.109, E-flat major").composerName("Glazunov")),
+//                new Piece(new PieceBuilder().title("Symphony No. 7").composerName("Beethoven")),
+//                new Piece(new PieceBuilder().title("Rise").composerName("Zhou Tian")),
+//                new Piece(new PieceBuilder().title("Symphony No.2").composerName("Mahler"))));
 
-        pieceRepo.saveAll(Arrays.asList(new Piece(new PieceBuilder().title("Rapture").composerName("Rouse")),
-                new Piece(new PieceBuilder().title("Violin Concerto in D").composerName("Brahms")),
-                new Piece(new PieceBuilder().title("Firebird Suite(1945)").composerName("Stravinsky")),
-                new Piece(new PieceBuilder().title("The Sorcerer's Apprentice").composerName("Dukas")),
-                new Piece(new PieceBuilder().title("Concerto for Organ and Orchestra").composerName("Poulenc")),
-                new Piece(new PieceBuilder().title("Symphony in D minor").composerName("Franck")),
-                new Piece(new PieceBuilder().title("Along the Western Shore").composerName("Remick-Warren")),
-                new Piece(new PieceBuilder().title("Prelude and Liebestod from Tristan und Isolde").composerName("Wagner")),
-                new Piece(new PieceBuilder().title("Piano Concerto No. 3").composerName("Rachmaninoff")),
-                new Piece(new PieceBuilder().title("Mary Poppins (Full Film)").composerName("Sherman and Sherman")),
-                new Piece(new PieceBuilder().title("Star Wars: A New Hope ").composerName("Williams")),
-                new Piece(new PieceBuilder().title("New Work based on Harriet Tubman").composerName("Timothy Adams")),
-                new Piece(new PieceBuilder().title("Concertino da Camera for Alto Saxophone and Orchestra").composerName("Ibert")),
-                new Piece(new PieceBuilder().title("Concerto, Alto Saxophone, op.109, E-flat major").composerName("Glazunov")),
-                new Piece(new PieceBuilder().title("Symphony No. 7").composerName("Beethoven")),
-                new Piece(new PieceBuilder().title("Rise").composerName("Zhou Tian")),
-                new Piece(new PieceBuilder().title("Symphony No.2").composerName("Mahler"))));
+
+        piece2Repo.saveAll(Arrays.asList(new Piece2(new PieceBuilder().title("Rapture").composerName("Rouse")),
+                new Piece2(new PieceBuilder().title("Violin Concerto in D").composerName("Brahms")),
+                new Piece2(new PieceBuilder().title("Firebird Suite(1945)").composerName("Stravinsky")),
+                new Piece2(new PieceBuilder().title("The Sorcerer's Apprentice").composerName("Dukas")),
+                new Piece2(new PieceBuilder().title("Concerto for Organ and Orchestra").composerName("Poulenc")),
+                new Piece2(new PieceBuilder().title("Symphony in D minor").composerName("Franck")),
+                new Piece2(new PieceBuilder().title("Along the Western Shore").composerName("Remick-Warren")),
+                new Piece2(new PieceBuilder().title("Prelude and Liebestod from Tristan und Isolde").composerName("Wagner")),
+                new Piece2(new PieceBuilder().title("Piano Concerto No. 3").composerName("Rachmaninoff")),
+                new Piece2(new PieceBuilder().title("Mary Poppins (Full Film)").composerName("Sherman and Sherman")),
+                new Piece2(new PieceBuilder().title("Star Wars: A New Hope ").composerName("Williams")),
+                new Piece2(new PieceBuilder().title("New Work based on Harriet Tubman").composerName("Timothy Adams")),
+                new Piece2(new PieceBuilder().title("Concertino da Camera for Alto Saxophone and Orchestra").composerName("Ibert")),
+                new Piece2(new PieceBuilder().title("Concerto, Alto Saxophone, op.109, E-flat major").composerName("Glazunov")),
+                new Piece2(new PieceBuilder().title("Symphony No. 7").composerName("Beethoven")),
+                new Piece2(new PieceBuilder().title("Rise").composerName("Zhou Tian")),
+                new Piece2(new PieceBuilder().title("Symphony No.2").composerName("Mahler"))));
 
         DateTime sym1Date = new DateTime(LocalDate.of(2022, 1, 8), LocalTime.of(8, 0));
 
@@ -172,25 +198,6 @@ public class Populator implements CommandLineRunner {
         Performance pops5 = new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build();
         Performance sym5 = new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).build();
 
-
-//        Piece test1 = new Piece(new PieceBuilder().title("Christopher Tin"));
-//        Piece test2 = new Piece(new PieceBuilder().title("Cool Stuff"));
-//
-//        pieceRepo.save(test1);
-//        pieceRepo.save(test2);
-//
-//        PieceOnProgram testish1 = new PieceOnProgram(test1);
-//        PieceOnProgram testish2 = new PieceOnProgram(test2);
-//
-//        pieceOnProgramRepo.save(testish1);
-//        pieceOnProgramRepo.save(testish2);
-//
-//        List<Piece> testPieces = new ArrayList<>();
-//
-//        testPieces.add(test1);
-//        testPieces.add(test2);
-//
-//        Performance sym5 = new Performance(new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).program(testPieces).build());
         performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
 
 

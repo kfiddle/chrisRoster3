@@ -1,7 +1,6 @@
-package com.example.demo.repositories;
+package com.example.demo.repositories.take2Repos;
 
 
-import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.Piece2;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;

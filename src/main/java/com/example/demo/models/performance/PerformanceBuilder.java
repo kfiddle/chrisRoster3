@@ -91,6 +91,9 @@ public class PerformanceBuilder {
     public Performance build() {
         return new Performance(this);
     }
+    public Show buildNew() {
+        return new Show(this);
+    }
 
 
 }

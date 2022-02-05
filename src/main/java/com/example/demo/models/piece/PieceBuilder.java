@@ -41,7 +41,7 @@ public class PieceBuilder {
 
     public PieceBuilder scoreLines(Collection<ScoreLine> scoreLines) {
         Optional<Collection<ScoreLine>> scoreLinesOpt = Optional.ofNullable(scoreLines);
-        scoreLinesOpt.ifPresent(gotten -> this.scoreLines =  gotten);
+        scoreLinesOpt.ifPresent(gotten -> this.scoreLines = gotten);
         return this;
     }
 
@@ -143,6 +143,10 @@ public class PieceBuilder {
 
     public Piece build() {
         return new Piece(this);
+    }
+
+    public Piece2 buildNew() {
+        return new Piece2(this);
     }
 
 

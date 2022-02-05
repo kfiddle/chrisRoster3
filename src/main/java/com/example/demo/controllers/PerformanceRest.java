@@ -44,29 +44,29 @@ public class PerformanceRest {
 
     }
 
-    @PostMapping("/add-performance")
-    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {
-
-        try {
-            if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
-                performanceRepo.save(PerformanceMaker.makeFrom(incoming));
-
-                if (incoming.piecesSubmitted()) {
-                    for (Piece piece : incoming.piecesToAdd) {
-                        PieceOnProgram pieceOnShow = new PieceOnProgram(piece, performanceRepo.findByTitle(incoming.performance.getTitle()));
-                        incoming.showTunes.add(pieceOnShow);
-                        pieceOnProgramRepo.save(pieceOnShow);
-                    }
-
-                }
-            }
-        } catch (
-                Exception error) {
-            error.printStackTrace();
-        }
-
-        return (Collection<Performance>) performanceRepo.findAll();
-    }
+//    @PostMapping("/add-performance")
+//    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {
+//
+//        try {
+//            if (!performanceRepo.existsByTitle(incoming.performance.getTitle())) {
+//                performanceRepo.save(PerformanceMaker.makeFrom(incoming));
+//
+//                if (incoming.piecesSubmitted()) {
+//                    for (Piece piece : incoming.piecesToAdd) {
+//                        PieceOnProgram pieceOnShow = new PieceOnProgram(piece, performanceRepo.findByTitle(incoming.performance.getTitle()));
+//                        incoming.showTunes.add(pieceOnShow);
+//                        pieceOnProgramRepo.save(pieceOnShow);
+//                    }
+//
+//                }
+//            }
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//
+//        return (Collection<Performance>) performanceRepo.findAll();
+//    }
 
     @PostMapping("/get-pieces-on-program")
     public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {

@@ -6,6 +6,7 @@ import com.example.demo.models.piece.PieceMaker;
 //import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceOnProgramRepo;
 import com.example.demo.repositories.PieceRepo;
+import com.example.demo.repositories.take2Repos.Piece2Repo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,24 +25,24 @@ public class PieceRest {
     @Resource
     PieceOnProgramRepo ppRepo;
 
-    @RequestMapping("/get-all-pieces")
-    public Collection<Piece> getAllPerformances() {
-        return (Collection<Piece>) pieceRepo.findAll();
-    }
+//    @RequestMapping("/get-all-pieces")
+//    public Collection<Piece> getAllPerformances() {
+//        return (Collection<Piece>) pieceRepo.findAll();
+//    }
 
 
-    @PostMapping("/add-piece")
-    public Collection<Piece> addPieceToDatabase(@RequestBody Piece incomingPiece) throws IOException {
-
-        try {
-            Piece newPiece = PieceMaker.makeFrom(incomingPiece);
-            pieceRepo.save(newPiece);
-        } catch (
-                Exception error) {
-            error.printStackTrace();
-        }
-        return (Collection<Piece>) pieceRepo.findAll();
-    }
+//    @PostMapping("/add-piece")
+//    public Collection<Piece> addPieceToDatabase(@RequestBody Piece incomingPiece) throws IOException {
+//
+//        try {
+//            Piece newPiece = PieceMaker.makeFrom(incomingPiece);
+//            pieceRepo.save(newPiece);
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//        return (Collection<Piece>) pieceRepo.findAll();
+//    }
 
     @PostMapping("edit-piece")
     public Collection<Piece> editPieceInDatabase(@RequestBody Piece incomingPiece) throws IOException {
@@ -56,16 +57,16 @@ public class PieceRest {
     }
 
 
-    @RequestMapping("get-sorted-pieces/{sortType}")
-    public Collection<Piece> getSortedPieces(@PathVariable String sortType) {
-        try {
-            return pieceRepo.findAllBy(Sort.by(sortType));
-        } catch (
-                Exception error) {
-            error.printStackTrace();
-        }
-        return null;
-    }
+//    @RequestMapping("get-sorted-pieces/{sortType}")
+//    public Collection<Piece> getSortedPieces(@PathVariable String sortType) {
+//        try {
+//            return pieceRepo.findAllBy(Sort.by(sortType));
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//        return null;
+//    }
 
     @PostMapping("/add-full-orchestration")
     public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
