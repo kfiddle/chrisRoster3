@@ -54,14 +54,11 @@ public class ShowRest {
             if (!showRepo.existsByTitle(incoming.show.getTitle())) {
                 showRepo.save(PerformanceMaker.makeUsing(incoming.show));
 
-                System.out.println(incoming.show.getTitle());
-
                 if (!incoming.piecesToAdd.isEmpty()) {
                     for (Piece2 piece : incoming.piecesToAdd) {
                         ShowTune pieceOnShow = new ShowTune(piece, showRepo.findByTitle(incoming.show.getTitle()), incoming.piecesToAdd.indexOf(piece) + 1);
                         showTuneRepo.save(pieceOnShow);
                     }
-
                 }
             }
         } catch (
@@ -70,6 +67,20 @@ public class ShowRest {
         }
 
         return (Collection<Show>) showRepo.findAll();
+    }
+
+    @PostMapping("/get-pieces-on-program")
+    public List<ShowTune> getPiecesOnAShow(@RequestBody Show incomingShow) throws IOException {
+
+        try {
+            List<ShowTune> showTunes = (List<ShowTune>) showTuneRepo.findAllByShow(incomingShow);
+            Collections.sort(showTunes);
+            return showTunes;
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return null;
     }
 
 }

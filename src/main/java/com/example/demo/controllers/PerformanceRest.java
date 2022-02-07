@@ -68,19 +68,19 @@ public class PerformanceRest {
 //        return (Collection<Performance>) performanceRepo.findAll();
 //    }
 
-    @PostMapping("/get-pieces-on-program")
-    public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {
-
-        try {
-            List<PieceOnProgram> showTunes = (List<PieceOnProgram>) pieceOnProgramRepo.findAllByPerformance(incomingPerformance);
-            Collections.sort(showTunes);
-            return showTunes;
-        } catch (
-                Exception error) {
-            error.printStackTrace();
-        }
-        return null;
-    }
+//    @PostMapping("/get-pieces-on-program")
+//    public List<PieceOnProgram> getPiecesOnAShow(@RequestBody Performance incomingPerformance) throws IOException {
+//
+//        try {
+//            List<PieceOnProgram> showTunes = (List<PieceOnProgram>) pieceOnProgramRepo.findAllByPerformance(incomingPerformance);
+//            Collections.sort(showTunes);
+//            return showTunes;
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+//        return null;
+//    }
 }
 
 

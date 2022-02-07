@@ -9,7 +9,7 @@ import com.example.demo.models.piece.Piece2;
 import javax.persistence.*;
 
 @Entity
-public class ShowTune {
+public class ShowTune implements Comparable<ShowTune>  {
 
     @Id
     @GeneratedValue
@@ -19,21 +19,21 @@ public class ShowTune {
     private Piece2 piece;
 
     @ManyToOne
-    private Show performance;
+    private Show show;
 
     private int orderNum;
 
     public ShowTune() {
     }
 
-    public ShowTune(Piece2 piece, Show performance) {
+    public ShowTune(Piece2 piece, Show show) {
         this.piece = piece;
-        this.performance = performance;
+        this.show = show;
     }
 
-    public ShowTune(Piece2 piece, Show performance, int orderNum) {
+    public ShowTune(Piece2 piece, Show show, int orderNum) {
         this.piece = piece;
-        this.performance = performance;
+        this.show = show;
         this.orderNum = orderNum;
     }
 
@@ -41,8 +41,8 @@ public class ShowTune {
         this.piece = piece;
     }
 
-    public void setPerformance(Show performance) {
-        this.performance = performance;
+    public void setShow(Show show) {
+        this.show = show;
     }
 
     public void setOrderNum(int orderNum) {
@@ -57,11 +57,19 @@ public class ShowTune {
         return piece;
     }
 
-    public Show getPerformance() {
-        return performance;
+    public Show getShow() {
+        return show;
     }
 
     public int getOrderNum() {
         return orderNum;
+    }
+
+    @Override
+    public int compareTo(ShowTune other) {
+        if (orderNum > other.getOrderNum()) {
+            return 1;
+        }
+        return 0;
     }
 }
