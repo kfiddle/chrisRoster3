@@ -28,21 +28,21 @@ public class PerformanceRest {
     PieceOnProgramRepo pieceOnProgramRepo;
 
 
-    @RequestMapping("/get-all-performances")
-    public Collection<Performance> getAllPerformances() {
-        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
-
-        try {
-            Collections.sort(sortedPerformances);
-            return sortedPerformances;
-
-        } catch (Exception error){
-            error.printStackTrace();
-        }
-
-        return (Collection<Performance>) performanceRepo.findAll();
-
-    }
+//    @RequestMapping("/get-all-performances")
+//    public Collection<Performance> getAllPerformances() {
+//        List<Performance> sortedPerformances = new ArrayList<>((Collection<Performance>) performanceRepo.findAll());
+//
+//        try {
+//            Collections.sort(sortedPerformances);
+//            return sortedPerformances;
+//
+//        } catch (Exception error){
+//            error.printStackTrace();
+//        }
+//
+//        return (Collection<Performance>) performanceRepo.findAll();
+//
+//    }
 
 //    @PostMapping("/add-performance")
 //    public Collection<Performance> addAShow(@RequestBody PerformanceAdder incoming) throws IOException {

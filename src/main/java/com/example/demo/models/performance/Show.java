@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Show {
+public class Show implements Comparable<Show> {
 
     @Id
     @GeneratedValue
@@ -84,5 +84,10 @@ public class Show {
 
     public String getNotes() {
         return notes;
+    }
+
+    @Override
+    public int compareTo(Show next) {
+        return performanceDates.get(0).getDate().compareTo(next.performanceDates.get(0).getDate());
     }
 }

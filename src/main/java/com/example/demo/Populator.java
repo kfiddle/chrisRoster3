@@ -6,6 +6,7 @@ import com.example.demo.junctions.PieceOnProgram;
 import com.example.demo.models.DateTime;
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.performance.PerformanceBuilder;
+import com.example.demo.models.performance.Show;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.Piece2;
 import com.example.demo.models.piece.PieceBuilder;
@@ -187,18 +188,30 @@ public class Populator implements CommandLineRunner {
         pops4Dates.add(pops4Second);
 
 
-        Performance pops1 = new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).build();
-        Performance sym1 = new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).build();
-        Performance pops2 = new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).build();
-        Performance sym2 = new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).build();
-        Performance sym3 = new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).build();
-        Performance pops3 = new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).build();
-        Performance pops4 = new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).build();
-        Performance sym4 = new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).build();
-        Performance pops5 = new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build();
-        Performance sym5 = new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).build();
+//        Performance pops1 = new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).build();
+//        Performance sym1 = new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).build();
+//        Performance pops2 = new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).build();
+//        Performance sym2 = new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).build();
+//        Performance sym3 = new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).build();
+//        Performance pops3 = new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).build();
+//        Performance pops4 = new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).build();
+//        Performance sym4 = new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).build();
+//        Performance pops5 = new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).build();
+//        Performance sym5 = new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).build();
 
-        performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
+        Show pops1 = new PerformanceBuilder().title("Pops 1: Come Home for the Holidays").performanceDates(pops1Dates).buildNew();
+        Show sym1 = new PerformanceBuilder().title("Sym 1: Midori").withDate(sym1Date).buildNew();
+        Show pops2 = new PerformanceBuilder().title("Pops 2: Music of the Knights").withDate(pops2Date).buildNew();
+        Show sym2 = new PerformanceBuilder().title("Sym 2: French / Organ").withDate(sym2Date).buildNew();
+        Show sym3 = new PerformanceBuilder().title("Sym 3: Olga Kern").withDate(sym3Date).buildNew();
+        Show pops3 = new PerformanceBuilder().title("Pops 3: Mary Poppins in Concert").performanceDates(pops3Dates).buildNew();
+        Show pops4 = new PerformanceBuilder().title("Pops 4:Star Wars:A New Hope in Concert").performanceDates(pops4Dates).buildNew();
+        Show sym4 = new PerformanceBuilder().title("Sym 4: Tim Adams / saxophone").withDate(sym4Date).buildNew();
+        Show pops5 = new PerformanceBuilder().title("Pops 5: R&H").withDate(pops5Date).buildNew();
+        Show sym5 = new PerformanceBuilder().title("Sym 5: Mahler 2").withDate(sym5Date).buildNew();
+
+//        performanceRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
+        showRepo.saveAll(Arrays.asList(pops3, pops1, pops2, sym2, sym3, pops4, sym4, pops5, sym5, sym1));
 
 
     }

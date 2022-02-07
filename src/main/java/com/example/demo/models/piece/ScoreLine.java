@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 public class ScoreLine {
 
     private Part primaryPart;
-    private int number;
+    private int rank;
 
     private Part secondaryPart;
     private Part thirdPart;
@@ -17,20 +17,20 @@ public class ScoreLine {
     public ScoreLine() {
     }
 
-    public ScoreLine(Part primaryPart, int number) {
+    public ScoreLine(Part primaryPart, int rank) {
         this.primaryPart = primaryPart;
-        this.number = number;
+        this.rank = rank;
     }
 
-    public ScoreLine(Part primaryPart, int number, Part secondaryPart) {
+    public ScoreLine(Part primaryPart, int rank, Part secondaryPart) {
         this.primaryPart = primaryPart;
-        this.number = number;
+        this.rank = rank;
         this.secondaryPart = secondaryPart;
     }
 
-    public ScoreLine(Part primaryPart, int number, Part secondaryPart, Part thirdPart) {
+    public ScoreLine(Part primaryPart, int rank, Part secondaryPart, Part thirdPart) {
         this.primaryPart = primaryPart;
-        this.number = number;
+        this.rank = rank;
         this.secondaryPart = secondaryPart;
         this.thirdPart = thirdPart;
     }
@@ -39,8 +39,8 @@ public class ScoreLine {
         this.primaryPart = primaryPart;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public void setSecondaryPart(Part secondaryPart) {
@@ -55,8 +55,8 @@ public class ScoreLine {
         return primaryPart;
     }
 
-    public int getNumber() {
-        return number;
+    public int getRank() {
+        return rank;
     }
 
     public Part getSecondaryPart() {

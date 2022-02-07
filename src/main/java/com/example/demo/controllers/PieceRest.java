@@ -68,31 +68,31 @@ public class PieceRest {
 //        return null;
 //    }
 
-    @PostMapping("/add-full-orchestration")
-    public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
-
-        Optional<Piece> pieceCheck = pieceRepo.findById(incomingPiece.getId());
-        if (pieceCheck.isPresent()) {
-            Piece pieceToAttachOrch = pieceCheck.get();
-            pieceToAttachOrch.setOrchestration(incomingPiece.getOrchestration());
-
-            if (!incomingPiece.getDoublings().isEmpty()) {
-                pieceToAttachOrch.setDoublings(incomingPiece.getDoublings());
-            }
-
-            pieceRepo.save(pieceToAttachOrch);
-
-            if (ppRepo.existsByPiece(pieceToAttachOrch)) {
-                Collection<PieceOnProgram> ppsToGetChairs = ppRepo.findAllByPiece(pieceToAttachOrch);
-                for (PieceOnProgram pp : ppsToGetChairs) {
-                    pp.makeSomeEmptyChairs();
-                    ppRepo.save(pp);
-                }
-            }
-        }
-
-        return pieceCheck;
-    }
+//    @PostMapping("/add-full-orchestration")
+//    public Optional<Piece> addFullOrchestration(@RequestBody Piece incomingPiece) throws IOException {
+//
+//        Optional<Piece> pieceCheck = pieceRepo.findById(incomingPiece.getId());
+//        if (pieceCheck.isPresent()) {
+//            Piece pieceToAttachOrch = pieceCheck.get();
+//            pieceToAttachOrch.setOrchestration(incomingPiece.getOrchestration());
+//
+//            if (!incomingPiece.getDoublings().isEmpty()) {
+//                pieceToAttachOrch.setDoublings(incomingPiece.getDoublings());
+//            }
+//
+//            pieceRepo.save(pieceToAttachOrch);
+//
+//            if (ppRepo.existsByPiece(pieceToAttachOrch)) {
+//                Collection<PieceOnProgram> ppsToGetChairs = ppRepo.findAllByPiece(pieceToAttachOrch);
+//                for (PieceOnProgram pp : ppsToGetChairs) {
+//                    pp.makeSomeEmptyChairs();
+//                    ppRepo.save(pp);
+//                }
+//            }
+//        }
+//
+//        return pieceCheck;
+//    }
 
 
 }

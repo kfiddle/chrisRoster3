@@ -11,6 +11,5 @@ public class ShowAdder {
 
     public Show show;
     public List<Piece2> piecesToAdd;
-//    public List<PieceOnProgram> showTunes = new ArrayList<>();
 
 }

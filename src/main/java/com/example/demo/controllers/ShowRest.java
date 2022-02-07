@@ -9,14 +9,14 @@ import com.example.demo.models.piece.Piece2;
 import com.example.demo.repositories.take2Repos.Piece2Repo;
 import com.example.demo.repositories.take2Repos.ShowRepo;
 import com.example.demo.repositories.take2Repos.ShowTuneRepo;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -31,12 +31,30 @@ public class ShowRest {
     @Resource
     Piece2Repo piece2Repo;
 
+    @RequestMapping("/get-all-performances")
+    public Collection<Show> getAllShows() {
+        List<Show> sortedShows = new ArrayList<>((Collection<Show>) showRepo.findAll());
+
+        try {
+            Collections.sort(sortedShows);
+            return sortedShows;
+
+        } catch (Exception error){
+            error.printStackTrace();
+        }
+
+        return (Collection<Show>) showRepo.findAll();
+
+    }
+
     @PostMapping("/add-performance")
     public Collection<Show> addAShow(@RequestBody ShowAdder incoming) throws IOException {
 
         try {
             if (!showRepo.existsByTitle(incoming.show.getTitle())) {
                 showRepo.save(PerformanceMaker.makeUsing(incoming.show));
+
+                System.out.println(incoming.show.getTitle());
 
                 if (!incoming.piecesToAdd.isEmpty()) {
                     for (Piece2 piece : incoming.piecesToAdd) {
