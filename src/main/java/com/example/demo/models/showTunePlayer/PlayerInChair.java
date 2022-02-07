@@ -4,6 +4,7 @@ package com.example.demo.models.showTunePlayer;
 import com.example.demo.enums.Part;
 import com.example.demo.junctions.PInChair;
 import com.example.demo.junctions.ShowTune;
+import com.example.demo.models.piece.Piece2;
 import com.example.demo.models.player.Player;
 
 import javax.persistence.*;
@@ -18,104 +19,81 @@ public class PlayerInChair implements Comparable<PlayerInChair>{
     @GeneratedValue
     private Long id;
 
-    private Part part;
+    private Part primaryPart;
     private int rank;
+
+    private Part secondaryPart;
+    private Part thirdPart;
 
     @ManyToOne
     private Player player;
 
-    @ElementCollection
-    private List<Part> parts = new ArrayList<>();
-
     @ManyToOne
-    private ShowTune pieceOnProgram;
+    private ShowTune showTune;
 
-
-    public PlayerInChair() {
+    public PlayerInChair(PlayerInChairBuilder playerInChairBuilder) {
+        this.primaryPart = playerInChairBuilder.primaryPart;
+        this.rank = playerInChairBuilder.rank;
+        this.secondaryPart = playerInChairBuilder.secondaryPart;
+        this.thirdPart = playerInChairBuilder.thirdPart;
     }
 
-    public PlayerInChair(Part part, int rank) {
-        parts.add(part);
-        this.part = parts.get(0);
-        this.rank = rank;
-    }
-
-    public PlayerInChair(ShowTune pieceOnProgram, Part part, int rank) {
-        this.pieceOnProgram = pieceOnProgram;
-        parts.add(part);
-        this.part = parts.get(0);
-        this.rank = rank;
-    }
-
-    public PlayerInChair(ShowTune pieceOnProgram, Part part, int rank, Part part2) {
-        this.pieceOnProgram = pieceOnProgram;
-        parts.add(part);
-        parts.add(part2);
-        this.part = parts.get(0);
-        this.rank = rank;
-    }
-
-    public PlayerInChair(ShowTune pieceOnProgram, Part part, int rank, Part part2, Part part3) {
-        this.pieceOnProgram = pieceOnProgram;
-        parts.add(part);
-        parts.add(part2);
-        parts.add(part3);
-        this.part = parts.get(0);
-        this.rank = rank;
-    }
-
-    public void setPart(Part part) {
-        this.part = part;
+    public void setPrimaryPart(Part primaryPart) {
+        this.primaryPart = primaryPart;
     }
 
     public void setRank(int rank) {
         this.rank = rank;
     }
 
+    public void setSecondaryPart(Part secondaryPart) {
+        this.secondaryPart = secondaryPart;
+    }
+
+    public void setThirdPart(Part thirdPart) {
+        this.thirdPart = thirdPart;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
-    }
-
-    public void setPieceOnProgram(ShowTune pieceOnProgram) {
-        this.pieceOnProgram = pieceOnProgram;
+    public void setShowTune(ShowTune showTune) {
+        this.showTune = showTune;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Part getPart() {
-        return part;
+    public Part getPrimaryPart() {
+        return primaryPart;
     }
 
     public int getRank() {
         return rank;
     }
 
+    public Part getSecondaryPart() {
+        return secondaryPart;
+    }
+
+    public Part getThirdPart() {
+        return thirdPart;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public ShowTune getPieceOnProgram() {
-        return pieceOnProgram;
-    }
-
-    public void addPart(Part part) {
-        parts.add(part);
+    public ShowTune getShowTune() {
+        return showTune;
     }
 
     @Override
     public int compareTo(PlayerInChair other) {
-        if (part.compare(other.getPart()) != 0) {
-            return part.compare(other.getPart());
+        if (primaryPart.compare(other.getPrimaryPart()) != 0) {
+            return primaryPart.compare(other.getPrimaryPart());
         } else if (rank > other.getRank()) {
             return 1;
         } else {

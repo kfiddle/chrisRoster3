@@ -27,7 +27,7 @@ public class PieceBuilder {
 
     @ElementCollection
     public Collection<NumbOnPart> orchestration = new ArrayList<>();
-    public Collection<ScoreLine> scoreLines;
+    public Collection<EmptyChair> emptyChairs;
 
 
     public PieceBuilder() {
@@ -39,9 +39,9 @@ public class PieceBuilder {
         return this;
     }
 
-    public PieceBuilder scoreLines(Collection<ScoreLine> scoreLines) {
-        Optional<Collection<ScoreLine>> scoreLinesOpt = Optional.ofNullable(scoreLines);
-        scoreLinesOpt.ifPresent(gotten -> this.scoreLines = gotten);
+    public PieceBuilder scoreLines(Collection<EmptyChair> emptyChairs) {
+        Optional<Collection<EmptyChair>> scoreLinesOpt = Optional.ofNullable(emptyChairs);
+        scoreLinesOpt.ifPresent(gotten -> this.emptyChairs = gotten);
         return this;
     }
 

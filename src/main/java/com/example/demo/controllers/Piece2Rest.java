@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 
-import com.example.demo.junctions.PieceOnProgram;
+import com.example.demo.junctions.ShowTune;
 import com.example.demo.models.piece.*;
+import com.example.demo.models.showTunePlayer.PlayerInChair;
 import com.example.demo.repositories.take2Repos.Piece2Repo;
+import com.example.demo.repositories.take2Repos.PlayerInChairRepo;
+import com.example.demo.repositories.take2Repos.ShowTuneRepo;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,12 @@ public class Piece2Rest {
 
     @Resource
     Piece2Repo piece2Repo;
+
+    @Resource
+    ShowTuneRepo showTuneRepo;
+
+    @Resource
+    PlayerInChairRepo playerInChairRepo;
 
     @RequestMapping("/get-all-pieces")
     public Collection<Piece2> getAllPerformances() {
@@ -49,21 +58,24 @@ public class Piece2Rest {
     }
 
     @PostMapping("/add-all-scorelines/{pieceId}")
-    public Optional<Piece2> addFullOrchestration(@PathVariable Long pieceId, @RequestBody ScoreLinesCollection incomingLines) throws IOException {
+    public Optional<Piece2> addFullOrchestration(@PathVariable Long pieceId, @RequestBody EmptyChairsCollection incomingLines) throws IOException {
 
 
         Optional<Piece2> pieceCheck = piece2Repo.findById(pieceId);
         if (pieceCheck.isPresent()) {
             Piece2 pieceToAttachOrch = pieceCheck.get();
-            pieceToAttachOrch.setScoreLines(incomingLines.scoreLines);
+            pieceToAttachOrch.setEmptyChairs(incomingLines.emptyChairs);
 
             piece2Repo.save(pieceToAttachOrch);
 
-            for (ScoreLine scoreLine : pieceToAttachOrch.getScoreLines()) {
-                System.out.println(scoreLine.getPrimaryPart() + "     " + scoreLine.getRank());
-                if (scoreLine.getSecondaryPart() != null) {
-                    System.out.println(" and doubling on " +  scoreLine.getSecondaryPart());
+            if (showTuneRepo.existsByPiece2(pieceToAttachOrch)) {
+                for (ShowTune showTune : showTuneRepo.findAllByPiece2(pieceToAttachOrch)) {
+                      playerInChairRepo.saveAll(showTune.makeSomeEmptyChairs());
                 }
+            }
+
+            for (PlayerInChair playerInChair : playerInChairRepo.findAll()) {
+                System.out.println(playerInChair.getPrimaryPart() + "    " + playerInChair.getRank());
             }
 
 //            if (ppRepo.existsByPiece(pieceToAttachOrch)) {

@@ -6,7 +6,7 @@ import com.example.demo.enums.Part;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ScoreLine {
+public class EmptyChair {
 
     private Part primaryPart;
     private int rank;
@@ -14,21 +14,21 @@ public class ScoreLine {
     private Part secondaryPart;
     private Part thirdPart;
 
-    public ScoreLine() {
+    public EmptyChair() {
     }
 
-    public ScoreLine(Part primaryPart, int rank) {
+    public EmptyChair(Part primaryPart, int rank) {
         this.primaryPart = primaryPart;
         this.rank = rank;
     }
 
-    public ScoreLine(Part primaryPart, int rank, Part secondaryPart) {
+    public EmptyChair(Part primaryPart, int rank, Part secondaryPart) {
         this.primaryPart = primaryPart;
         this.rank = rank;
         this.secondaryPart = secondaryPart;
     }
 
-    public ScoreLine(Part primaryPart, int rank, Part secondaryPart, Part thirdPart) {
+    public EmptyChair(Part primaryPart, int rank, Part secondaryPart, Part thirdPart) {
         this.primaryPart = primaryPart;
         this.rank = rank;
         this.secondaryPart = secondaryPart;

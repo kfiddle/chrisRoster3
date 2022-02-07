@@ -47,7 +47,7 @@ public class PieceMaker {
                 .status(otherPiece.getStatus())
                 .sign(otherPiece.getSign())
                 .updated(otherPiece.getUpdated())
-                .scoreLines(otherPiece.getScoreLines())
+                .scoreLines(otherPiece.getEmptyChairs())
                 .buildNew();
 
     }

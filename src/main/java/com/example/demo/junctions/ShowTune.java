@@ -3,10 +3,15 @@ package com.example.demo.junctions;
 
 import com.example.demo.models.performance.Performance;
 import com.example.demo.models.performance.Show;
+import com.example.demo.models.piece.EmptyChair;
 import com.example.demo.models.piece.Piece;
 import com.example.demo.models.piece.Piece2;
+import com.example.demo.models.showTunePlayer.PlayerInChair;
+import com.example.demo.models.showTunePlayer.PlayerInChairBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class ShowTune implements Comparable<ShowTune>  {
@@ -16,7 +21,7 @@ public class ShowTune implements Comparable<ShowTune>  {
     private Long id;
 
     @ManyToOne
-    private Piece2 piece;
+    private Piece2 piece2;
 
     @ManyToOne
     private Show show;
@@ -26,19 +31,19 @@ public class ShowTune implements Comparable<ShowTune>  {
     public ShowTune() {
     }
 
-    public ShowTune(Piece2 piece, Show show) {
-        this.piece = piece;
+    public ShowTune(Piece2 piece2, Show show) {
+        this.piece2 = piece2;
         this.show = show;
     }
 
-    public ShowTune(Piece2 piece, Show show, int orderNum) {
-        this.piece = piece;
+    public ShowTune(Piece2 piece2, Show show, int orderNum) {
+        this.piece2 = piece2;
         this.show = show;
         this.orderNum = orderNum;
     }
 
-    public void setPiece(Piece2 piece) {
-        this.piece = piece;
+    public void setPiece2(Piece2 piece2) {
+        this.piece2 = piece2;
     }
 
     public void setShow(Show show) {
@@ -53,8 +58,8 @@ public class ShowTune implements Comparable<ShowTune>  {
         return id;
     }
 
-    public Piece2 getPiece() {
-        return piece;
+    public Piece2 getPiece2() {
+        return piece2;
     }
 
     public Show getShow() {
@@ -63,6 +68,20 @@ public class ShowTune implements Comparable<ShowTune>  {
 
     public int getOrderNum() {
         return orderNum;
+    }
+
+    public Collection<PlayerInChair> makeSomeEmptyChairs() {
+        Collection<PlayerInChair> chairsToReturn = new ArrayList<>();
+        for (EmptyChair emptyChair : piece2.getEmptyChairs()) {
+            PlayerInChair playerInChair = new PlayerInChairBuilder()
+                    .primaryPart(emptyChair.getPrimaryPart())
+                    .rank(emptyChair.getRank())
+                    .secondaryPart(emptyChair.getSecondaryPart())
+                    .thirdPart(emptyChair.getThirdPart())
+                    .build();
+            chairsToReturn.add(playerInChair);
+        }
+        return chairsToReturn;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Piece2 {
     private LocalDate updated;
 
     @ElementCollection
-    private Collection<ScoreLine> scoreLines;
+    private Collection<EmptyChair> emptyChairs;
 
     public Piece2() {
     }
@@ -56,7 +56,7 @@ public class Piece2 {
         status = pieceBuilder.status;
         sign = pieceBuilder.sign;
         updated = pieceBuilder.updated;
-        scoreLines = pieceBuilder.scoreLines;
+        emptyChairs = pieceBuilder.emptyChairs;
     }
 
     public void setPrefix(String prefix) {
@@ -123,8 +123,8 @@ public class Piece2 {
         this.updated = updated;
     }
 
-    public void setScoreLines(Collection<ScoreLine> scoreLines) {
-        this.scoreLines = scoreLines;
+    public void setEmptyChairs(Collection<EmptyChair> emptyChairs) {
+        this.emptyChairs = emptyChairs;
     }
 
 
@@ -199,7 +199,9 @@ public class Piece2 {
         return updated;
     }
 
-    public Collection<ScoreLine> getScoreLines() {
-        return scoreLines;
+    public Collection<EmptyChair> getEmptyChairs() {
+        return emptyChairs;
     }
+
+
 }
