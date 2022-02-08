@@ -57,14 +57,16 @@ public class Piece2Rest {
         return null;
     }
 
-    @PostMapping("/add-all-scorelines/{pieceId}")
-    public Optional<Piece2> addFullOrchestration(@PathVariable Long pieceId, @RequestBody EmptyChairsCollection incomingLines) throws IOException {
+    @PostMapping("/add-all-empty-chairs/{pieceId}")
+    public Optional<Piece2> addFullOrchestration(@PathVariable Long pieceId, @RequestBody Collection<EmptyChair> incomingChairs) throws IOException {
 
 
         Optional<Piece2> pieceCheck = piece2Repo.findById(pieceId);
+
+
         if (pieceCheck.isPresent()) {
             Piece2 pieceToAttachOrch = pieceCheck.get();
-            pieceToAttachOrch.setEmptyChairs(incomingLines.emptyChairs);
+            pieceToAttachOrch.setEmptyChairs(incomingChairs);
 
             piece2Repo.save(pieceToAttachOrch);
 
