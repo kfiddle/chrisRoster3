@@ -33,13 +33,19 @@ public class PlayerRest {
     }
 
     @RequestMapping("/get-all-parts")
-    public Collection<String> getAllParts() {
-        Collection<String> parts = new ArrayList<>();
-        for (Part part : Part.values()) {
-            parts.add(part.toString());
-        }
-        return parts;
+    public Collection<Part> getAllParts() {
+        return Arrays.asList(Part.values());
     }
+
+//    @RequestMapping("/get-all-parts")
+//    public Collection<String> getAllParts() {
+//
+//        Collection<String> parts = new ArrayList<>();
+//        for (Part part : Part.values()) {
+//            parts.add(part.toString());
+//        }
+//        return parts;
+//    }
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
@@ -83,12 +89,12 @@ public class PlayerRest {
     }
 
     @RequestMapping("/subs/{incomingPart}")
-    public Collection<Player> getSubsOfInstrument(@PathVariable String incomingPart) {
-        Part partToFind = Part.ofPartName(incomingPart);
+    public Collection<Player> getSubsOfInstrument(@PathVariable Part incomingPart) {
+//        Part partToFind = Part.ofPartName(incomingPart);
         Collection<Player> playersToSend = new ArrayList<>();
         for (Player player : playerRepo.findAllByType(Type.SUB)) {
             for (Part part : player.getParts()) {
-                if (part.equals(partToFind)) {
+                if (part.equals(incomingPart)) {
                     playersToSend.add(player);
                 }
             }

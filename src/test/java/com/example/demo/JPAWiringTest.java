@@ -63,11 +63,11 @@ public class JPAWiringTest {
 
         Player retrievedSam = playerRepo.findByFirstNameAreaAndLastName("Sam", "Elliot");
 
-        PInChair samsChair = new PInChair(Part.Violin1, 3);
+        PInChair samsChair = new PInChair(Part.VIOLIN1, 3);
         List<PInChair> chairs = new ArrayList<>();
         chairs.add(samsChair);
 
-        retrievedSam.addPart(Part.Violin1);
+        retrievedSam.addPart(Part.VIOLIN1);
         retrievedSam.setRank(2);
 
         firstOnShow.setChairsToFill(chairs);
@@ -97,7 +97,7 @@ public class JPAWiringTest {
 
         playerRepo.saveAll(Arrays.asList(testPlayer1, testPlayer2, testPlayer3));
 
-        PInChair samsChair = new PInChair(Part.Violin1, 3);
+        PInChair samsChair = new PInChair(Part.VIOLIN1, 3);
         samsChair.setPlayer(playerRepo.findByFirstNameAreaAndLastName("Sam", "Elliot"));
         List<PInChair> chairs = new ArrayList<>();
         chairs.add(samsChair);

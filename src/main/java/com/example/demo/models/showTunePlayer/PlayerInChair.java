@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class PlayerInChair implements Comparable<PlayerInChair>{
+public class PlayerInChair implements Comparable<PlayerInChair> {
 
     @Id
     @GeneratedValue
@@ -30,6 +30,9 @@ public class PlayerInChair implements Comparable<PlayerInChair>{
 
     @ManyToOne
     private ShowTune showTune;
+
+    public PlayerInChair() {
+    }
 
     public PlayerInChair(PlayerInChairBuilder playerInChairBuilder) {
         this.primaryPart = playerInChairBuilder.primaryPart;

@@ -63,6 +63,13 @@ public class Piece2Rest {
 
         Optional<Piece2> pieceCheck = piece2Repo.findById(pieceId);
 
+        for (EmptyChair emptyChair : incomingChairs) {
+            System.out.println(emptyChair.getPrimaryPart() + "    " + emptyChair.getRank());
+            if (emptyChair.getSecondaryPart() != null) {
+                System.out.println(emptyChair.getSecondaryPart());
+            }
+        }
+
 
         if (pieceCheck.isPresent()) {
             Piece2 pieceToAttachOrch = pieceCheck.get();
@@ -80,17 +87,6 @@ public class Piece2Rest {
                 System.out.println(playerInChair.getPrimaryPart() + "    " + playerInChair.getRank());
             }
 
-//            if (ppRepo.existsByPiece(pieceToAttachOrch)) {
-//                Collection<PieceOnProgram> ppsToGetChairs = ppRepo.findAllByPiece(pieceToAttachOrch);
-//                for (PieceOnProgram pp : ppsToGetChairs) {
-//                    pp.makeSomeEmptyChairs();
-//                    ppRepo.save(pp);
-//                }
-//            }
-
-//            for (ScoreLine scoreLine : pieceToAttachOrch.getScoreLines()) {
-//                System.out.println(scoreLine.getPrimaryPart() + "     " + scoreLine.getRank());
-//            }
         }
 
 
